@@ -61,6 +61,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core.cs" />
     <Compile Include="DataModel\MeasurDataExtendedHeader.cs" />
     <Compile Include="DataModel\MeasurDataExtendedLine.cs" />
     <Compile Include="DataModel\MeasurDataHeader.cs" />

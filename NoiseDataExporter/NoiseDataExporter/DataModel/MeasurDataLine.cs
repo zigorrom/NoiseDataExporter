@@ -8,46 +8,32 @@ namespace NoiseDataExporter.DataModel
 {
     public class MeasurDataLine
     {
-        public MeasurDataLine(string DataString)
+        public MeasurDataLine(string[] DataStrArray)
         {
-            InitData(DataString);
+            InitData(DataStrArray);
         }
-        private const int USampleIndex = 0;
-        private const int CurrentIndex = 1;
-        private const int ReqIndex = 2;
-        private const int FileNameIndex = 3;
-        private const int RloadIndex = 4;
-        private const int UwholeIndex = 5;
-        private const int U0sampleIndex = 6;
-        private const int U0wholeIndex = 7;
-        private const int R0sampleIndex = 8;
-        private const int ResampleIndex = 9;
-        private const int Temperature0Index = 10;
-        private const int TemperatureEIndex = 11;
-        private const int KamplIndex = 12;
-        private const int NaverIndex = 13;
-        private const int VGateIndex = 14;
 
-        private void InitData(string DataString)
+
+        private void InitData(string[] DataStrArray)
         {
-            var StrDataArray = DataString.Split('\t');
+            var StrDataArray = DataStrArray;
             try
             {
-                USample = double.Parse(StrDataArray[USampleIndex]);
-                Current = double.Parse(StrDataArray[CurrentIndex]);
-                ResistanceEquivalent = double.Parse(StrDataArray[ReqIndex]);
-                FileName = StrDataArray[FileNameIndex];
-                Rload = double.Parse(StrDataArray[RloadIndex]);
-                Uwhole = double.Parse(StrDataArray[UwholeIndex]);
-                U0Sample = double.Parse(StrDataArray[U0sampleIndex]);
-                U0whole = double.Parse(StrDataArray[U0wholeIndex]);
-                R0sample = double.Parse(StrDataArray[R0sampleIndex]);
-                Resample = double.Parse(StrDataArray[ResampleIndex]);
-                Temperature0 = double.Parse(StrDataArray[Temperature0Index]);
-                TemperatureE = double.Parse(StrDataArray[TemperatureEIndex]);
-                AmplificationFactor = long.Parse(StrDataArray[KamplIndex]);
-                AverageNumber = long.Parse(StrDataArray[NaverIndex]);
-                VoltageGate = double.Parse(StrDataArray[VGateIndex]);
+                USample = double.Parse(StrDataArray[MeasurDataHeader.USampleIndex]);
+                Current = double.Parse(StrDataArray[MeasurDataHeader.CurrentIndex]);
+                ResistanceEquivalent = double.Parse(StrDataArray[MeasurDataHeader.ReqIndex]);
+                FileName = StrDataArray[MeasurDataHeader.FileNameIndex];
+                Rload = double.Parse(StrDataArray[MeasurDataHeader.RloadIndex]);
+                Uwhole = double.Parse(StrDataArray[MeasurDataHeader.UwholeIndex]);
+                U0Sample = double.Parse(StrDataArray[MeasurDataHeader.U0sampleIndex]);
+                U0whole = double.Parse(StrDataArray[MeasurDataHeader.U0wholeIndex]);
+                R0sample = double.Parse(StrDataArray[MeasurDataHeader.R0sampleIndex]);
+                Resample = double.Parse(StrDataArray[MeasurDataHeader.ResampleIndex]);
+                Temperature0 = double.Parse(StrDataArray[MeasurDataHeader.Temperature0Index]);
+                TemperatureE = double.Parse(StrDataArray[MeasurDataHeader.TemperatureEIndex]);
+                AmplificationFactor = long.Parse(StrDataArray[MeasurDataHeader.KamplIndex]);
+                AverageNumber = long.Parse(StrDataArray[MeasurDataHeader.NaverIndex]);
+                VoltageGate = double.Parse(StrDataArray[MeasurDataHeader.VGateIndex]);
             }
             catch (Exception e)
             {
@@ -56,6 +42,27 @@ namespace NoiseDataExporter.DataModel
 
         }
 
+        public override string ToString()
+        {
+            const string StringFormat = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\t{14}";
+            return String.Format(StringFormat,
+                USample,
+                Current,
+                ResistanceEquivalent,
+                FileName,
+                Rload,
+                Uwhole,
+                U0Sample,
+                U0whole,
+                R0sample,
+                Resample,
+                Temperature0,
+                TemperatureE,
+                AmplificationFactor,
+                AverageNumber,
+                VoltageGate
+                );
+        }
 
         private double m_USample;
         public double USample
