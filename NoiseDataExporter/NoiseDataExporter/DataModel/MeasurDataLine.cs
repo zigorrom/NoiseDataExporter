@@ -10,7 +10,7 @@ namespace NoiseDataExporter.DataModel
     {
         public MeasurDataLine(string DataString)
         {
-
+            InitData(DataString);
         }
         private const int USampleIndex = 0;
         private const int CurrentIndex = 1;
@@ -51,7 +51,6 @@ namespace NoiseDataExporter.DataModel
             }
             catch (Exception e)
             {
-
                 throw;
             }
 

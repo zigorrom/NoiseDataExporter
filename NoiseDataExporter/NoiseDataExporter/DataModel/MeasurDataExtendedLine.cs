@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace NoiseDataExporter.DataModel
 {
-    public class MeasurDataExtendedLine
+    public class MeasurDataExtendedLine:MeasurDataLine
     {
+        public MeasurDataExtendedLine(string DataLine):base(DataLine)
+        {
+            
+        }
+
+        private void InitData(string DataLine)
+        {
+
+        }
     }
 }
