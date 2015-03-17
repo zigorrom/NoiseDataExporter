@@ -12,6 +12,51 @@ namespace NoiseDataExporter.DataModel
         {
 
         }
+        private const int USampleIndex = 0;
+        private const int CurrentIndex = 1;
+        private const int ReqIndex = 2;
+        private const int FileNameIndex = 3;
+        private const int RloadIndex = 4;
+        private const int UwholeIndex = 5;
+        private const int U0sampleIndex = 6;
+        private const int U0wholeIndex = 7;
+        private const int R0sampleIndex = 8;
+        private const int ResampleIndex = 9;
+        private const int Temperature0Index = 10;
+        private const int TemperatureEIndex = 11;
+        private const int KamplIndex = 12;
+        private const int NaverIndex = 13;
+        private const int VGateIndex = 14;
+
+        private void InitData(string DataString)
+        {
+            var StrDataArray = DataString.Split('\t');
+            try
+            {
+                USample = double.Parse(StrDataArray[USampleIndex]);
+                Current = double.Parse(StrDataArray[CurrentIndex]);
+                ResistanceEquivalent = double.Parse(StrDataArray[ReqIndex]);
+                FileName = StrDataArray[FileNameIndex];
+                Rload = double.Parse(StrDataArray[RloadIndex]);
+                Uwhole = double.Parse(StrDataArray[UwholeIndex]);
+                U0Sample = double.Parse(StrDataArray[U0sampleIndex]);
+                U0whole = double.Parse(StrDataArray[U0wholeIndex]);
+                R0sample = double.Parse(StrDataArray[R0sampleIndex]);
+                Resample = double.Parse(StrDataArray[ResampleIndex]);
+                Temperature0 = double.Parse(StrDataArray[Temperature0Index]);
+                TemperatureE = double.Parse(StrDataArray[TemperatureEIndex]);
+                AmplificationFactor = long.Parse(StrDataArray[KamplIndex]);
+                AverageNumber = long.Parse(StrDataArray[NaverIndex]);
+                VoltageGate = double.Parse(StrDataArray[VGateIndex]);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+        }
+
 
         private double m_USample;
         public double USample
