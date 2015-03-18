@@ -1,5 +1,6 @@
 ﻿using NoiseDataExporter.DataModel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace NoiseDataExporter
 {
-    public class Core
+    public class Core:IEnumerable<MeasurDataExtendedLine>
     {
         public Core()
         {
@@ -27,6 +28,9 @@ namespace NoiseDataExporter
         private bool CanProcessData;
         private const string MeasureDataFilename = "MeasurData";
         private const string MeasureDataExtendedFileName = "MeasurDataExtended";
+        
+        
+
 
         public bool PrepareToProcessData()
         {
@@ -44,6 +48,23 @@ namespace NoiseDataExporter
             return CanProcessData;
         }
 
-        //public IEnumerable<UltimateMeasureDataLine> 
+
+
+        public IEnumerator<MeasurDataExtendedLine> GetEnumerator()
+        {
+            if (!PrepareToProcessData())
+                return null;
+
+            var FileNamme = String.Concat(m_viewModel.WorkingDirectory, "\\", MeasureDataExtendedFileName);
+            using (StreamReader sr = new StreamReader(FileNamme))
+            {
+                
+            }
+        }
+
+        IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

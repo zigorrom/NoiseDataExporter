@@ -35,7 +35,6 @@ namespace NoiseDataExporter.DataModel
             }
             catch (Exception e)
             {
-
                 throw;
             }
         }
