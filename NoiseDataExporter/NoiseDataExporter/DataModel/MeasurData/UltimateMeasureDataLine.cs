@@ -13,6 +13,19 @@ namespace NoiseDataExporter.DataModel
             InitData(DataSrtArray);
         }
 
+        public override string ToString()
+        {
+            const string StringFormat = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}";
+            return String.Format(StringFormat,
+                base.ToString(),
+                Gm,
+                SuIntegrated,
+                SNR,
+                TresholdVoltage,
+                OverdriveVoltage
+                );
+        }
+
         private void InitData(string[] DataStrArray)
         {
             try

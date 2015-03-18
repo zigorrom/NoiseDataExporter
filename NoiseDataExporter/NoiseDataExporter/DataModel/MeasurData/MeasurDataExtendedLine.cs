@@ -18,6 +18,7 @@ namespace NoiseDataExporter.DataModel
         {
             string StringFormat = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\t{14}";
             return String.Format(StringFormat,
+                base.ToString(),
                 GR1Si,
                 GR1f,
                 GR2Si,
@@ -31,8 +32,7 @@ namespace NoiseDataExporter.DataModel
                 AFlicker,
                 AlphaFlicker,
                 fSiFlicker,
-                fSiFlickerDivSqrI,
-                base.ToString()
+                fSiFlickerDivSqrI
                 );
         }
 

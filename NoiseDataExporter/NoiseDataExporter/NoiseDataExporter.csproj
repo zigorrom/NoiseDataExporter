@@ -62,12 +62,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core.cs" />
-    <Compile Include="DataModel\MeasurDataExtendedHeader.cs" />
-    <Compile Include="DataModel\MeasurDataExtendedLine.cs" />
-    <Compile Include="DataModel\MeasurDataHeader.cs" />
-    <Compile Include="DataModel\MeasurDataLine.cs" />
-    <Compile Include="DataModel\UltimateMeasurDataHeader.cs" />
-    <Compile Include="DataModel\UltimateMeasureDataLine.cs" />
+    <Compile Include="DataModel\DataFile\DataFileHeader.cs" />
+    <Compile Include="DataModel\DataFile\DataFileLine.cs" />
+    <Compile Include="DataModel\MeasurData\MeasurDataExtendedHeader.cs" />
+    <Compile Include="DataModel\MeasurData\MeasurDataExtendedLine.cs" />
+    <Compile Include="DataModel\MeasurData\MeasurDataHeader.cs" />
+    <Compile Include="DataModel\MeasurData\MeasurDataLine.cs" />
+    <Compile Include="DataModel\DataFile\UltimateDataFileHeader.cs" />
+    <Compile Include="DataModel\DataFile\UltimateDataFileLine.cs" />
+    <Compile Include="DataModel\MeasurData\UltimateMeasurDataHeader.cs" />
+    <Compile Include="DataModel\MeasurData\UltimateMeasureDataLine.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -100,6 +104,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
