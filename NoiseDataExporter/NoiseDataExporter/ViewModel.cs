@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,10 +27,29 @@ namespace NoiseDataExporter
                 if (m_WorkingDirectory != value)
                 {
                     m_WorkingDirectory = value;
+                    var dir = new DirectoryInfo(m_WorkingDirectory);
+                    m_SaveDirectory = String.Concat(dir.Parent.FullName, "\\", dir.Name, "Extended");
+                    
                     OnPropertyChanged("WorkingDirectory");
                 }
             }
         }
+
+        private string m_SaveDirectory;
+
+        public string SaveDirectory
+        {
+            get { return m_SaveDirectory; }
+            set
+            {
+                if (m_SaveDirectory != value)
+                {
+                    m_SaveDirectory = value;
+                    OnPropertyChanged("SaveDirectory");
+                }
+            }
+        }
+
 
         private string m_TransconductanceReferenceFile;
 
