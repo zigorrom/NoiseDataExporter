@@ -27,6 +27,8 @@ namespace NoiseDataExporter
         private OpenFileDialog m_ofd;
         private Core m_core;
         private BackgroundWorker m_worker;
+        
+
 
         public MainWindow()
         {
@@ -62,7 +64,11 @@ namespace NoiseDataExporter
 
         void m_worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            
+            var worker = (BackgroundWorker)sender;
+            if (!m_core.PrepareToProcessData())
+                return;
+
+           
         }
 
         private void MenuItem_Click(object sender, System.Windows.RoutedEventArgs e)
