@@ -36,8 +36,12 @@ namespace NoiseDataExporter
         public string TransconductanceReferenceFile
         {
             get { return m_TransconductanceReferenceFile; }
-            set { 
-                m_TransconductanceReferenceFile = value; 
+            set {
+                if (m_TransconductanceReferenceFile != value)
+                {
+                    m_TransconductanceReferenceFile = value;
+                    OnPropertyChanged("TransconductanceReferenceFile");
+                }
             }
         }
 
@@ -46,7 +50,14 @@ namespace NoiseDataExporter
         public int TransconductanceReferenceFrequency
         {
             get { return m_TransconductanceReferenceFrequency; }
-            set { m_TransconductanceReferenceFrequency = value; }
+            set
+            {
+                if (m_TransconductanceReferenceFrequency != value)
+                {
+                    m_TransconductanceReferenceFrequency = value;
+                    OnPropertyChanged("TransconductanceReferenceFrequency");
+                }
+            }
         }
 
         private double m_TransconductanceReferenceValue;
@@ -54,7 +65,14 @@ namespace NoiseDataExporter
         public double TransconductanceReferenceValue
         {
             get { return m_TransconductanceReferenceValue; }
-            set { m_TransconductanceReferenceValue = value; }
+            set
+            {
+                if (m_TransconductanceReferenceValue != value)
+                {
+                    m_TransconductanceReferenceValue = value;
+                    OnPropertyChanged("TransconductanceReferenceValue");
+                }
+            }
         }
 
 
