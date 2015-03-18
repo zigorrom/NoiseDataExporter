@@ -48,7 +48,7 @@ namespace NoiseDataExporter
             return CanProcessData;
         }
 
-        public void ProcessData
+        public void ProcessData()
         {
 
         }
