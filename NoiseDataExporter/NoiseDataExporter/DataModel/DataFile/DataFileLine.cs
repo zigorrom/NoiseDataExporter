@@ -12,7 +12,7 @@ namespace NoiseDataExporter.DataModel
         {
             InitData(DataStrArray);
         }
-
+        
         private void InitData(string[] DataStrArray)
         {
             try
