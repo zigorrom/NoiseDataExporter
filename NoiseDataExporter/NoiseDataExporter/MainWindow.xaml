@@ -3,15 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="484.925" Width="638.433">
     <Grid>
-        <StatusBar HorizontalAlignment="Left" Height="100" Margin="0,355,0,0" VerticalAlignment="Top" Width="632"/>
-        <Menu HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="632"/>
-        <RichTextBox HorizontalAlignment="Left" Height="250" Margin="0,105,0,0" VerticalAlignment="Top" Width="632">
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text="RichTextBox"/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="Auto"/>
+    		<RowDefinition Height="181*"/>
+    		<RowDefinition Height="36*"/>
+    	</Grid.RowDefinitions>
+    	<Menu HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+    		<MenuItem Header="Folder">
+    			<MenuItem Header="Open" HorizontalAlignment="Left" Width="144.506666666667"/>
+    		</MenuItem>
+    		<MenuItem Header="Transconductance">
+    			<MenuItem Header="ReferenceFile"/>
+    			<Separator HorizontalAlignment="Left" Width="160.496666666667"/>
+    			<MenuItem Header="MenuItem" HorizontalAlignment="Left" Width="160.496666666667"/>
+    			<MenuItem Header="MenuItem" HorizontalAlignment="Left" Width="160.496666666667"/>
+    		</MenuItem>
+    		<MenuItem Header="Process"/>
+    	</Menu>
+    	<StatusBar Grid.Row="2">
+    		<StatusBarItem Content="StatusBarItem" Height="71.9941935483871" VerticalAlignment="Top"/>
+    	</StatusBar>
 
     </Grid>
 </Window>

@@ -24,3 +24,8 @@ C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDat
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.g.resources
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.Properties.Resources.resources
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csproj.GenerateResource.Cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.Maps.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.Markers.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.Markers2.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\Parser.dll
