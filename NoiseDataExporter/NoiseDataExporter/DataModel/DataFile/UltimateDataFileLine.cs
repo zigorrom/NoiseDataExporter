@@ -13,6 +13,7 @@ namespace NoiseDataExporter.DataModel
             InitData(DataStrArray);
         }
 
+        
         public override string ToString()
         {
             const string StringFormat = "{0}\t{1}\t{2}\t{3}";
