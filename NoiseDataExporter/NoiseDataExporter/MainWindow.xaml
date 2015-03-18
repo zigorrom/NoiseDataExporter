@@ -1,8 +1,17 @@
 ﻿<Window x:Class="NoiseDataExporter.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="484.925" Width="638.433">
     <Grid>
-        
+        <StatusBar HorizontalAlignment="Left" Height="100" Margin="0,355,0,0" VerticalAlignment="Top" Width="632"/>
+        <Menu HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="632"/>
+        <RichTextBox HorizontalAlignment="Left" Height="250" Margin="0,105,0,0" VerticalAlignment="Top" Width="632">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
     </Grid>
 </Window>

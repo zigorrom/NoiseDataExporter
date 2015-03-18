@@ -1,0 +1,13 @@
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\NoiseDataExporter.exe.config
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\MainWindow.baml
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\MainWindow.g.cs
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\App.g.cs
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter_MarkupCompile.cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.g.resources
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.Properties.Resources.resources
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csproj.GenerateResource.Cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\NoiseDataExporter.exe
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\NoiseDataExporter.pdb
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.exe
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\FourierTransformProvider\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.pdb
