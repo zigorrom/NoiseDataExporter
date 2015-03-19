@@ -32,3 +32,26 @@ C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDat
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.Markers.dll
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.Markers2.dll
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\Parser.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\NoiseDataExporter.exe.config
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.exe
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.pdb
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\NoiseDataExporter.exe
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\NoiseDataExporter.pdb
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.Maps.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.Markers.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.Markers2.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\Parser.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\IVAnalysis.baml
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\IVAnalysis.g.cs
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\MainWindow.g.cs
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\App.g.cs
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter_MarkupCompile.cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter_MarkupCompile.lref
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\MainWindow.baml
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.g.resources
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.Properties.Resources.resources
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csproj.GenerateResource.Cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\App.baml
