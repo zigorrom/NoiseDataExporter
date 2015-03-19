@@ -13,6 +13,24 @@ namespace NoiseDataExporter.DataModel
             InitData(DataStrArray);
         }
 
+        public MeasurDataLine(double Usample, double Current, double Req, string FileName, double Rload, double Uwhole, double U0Sample, double U0whole, double R0sample, double Resample, double Temperature0, double TempleratureE, int AmplificationFactor, int AverageNumber, double VoltageGate)
+        {
+            m_USample = Usample;
+            m_Current = Current;
+            m_Req = Req;
+            m_filename = FileName;
+            m_Rload = Rload;
+            m_Uwhole = Uwhole;
+            m_U0sample = U0Sample;
+            m_U0whole = U0whole;
+            m_R0sample = R0sample;
+            m_Resample = Resample;
+            m_temp0 = Temperature0;
+            m_tempE = TempleratureE;
+            m_Kampl = AmplificationFactor;
+            m_NAver = AverageNumber;
+            m_Vgate = VoltageGate;
+        }
 
         private void InitData(string[] DataStrArray)
         {
