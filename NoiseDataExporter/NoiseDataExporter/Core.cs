@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace NoiseDataExporter
 {
-    public class Core:IEnumerable<MeasurDataExtendedLine>
+    public class Core
     {
         public Core()
         {
@@ -48,23 +48,14 @@ namespace NoiseDataExporter
             return CanProcessData;
         }
 
-
-
-        public IEnumerator<MeasurDataExtendedLine> GetEnumerator()
+        public void ProcessData()
         {
-            if (!PrepareToProcessData())
-                return null;
 
-            var FileNamme = String.Concat(m_viewModel.WorkingDirectory, "\\", MeasureDataExtendedFileName);
-            using (StreamReader sr = new StreamReader(FileNamme))
-            {
-                
-            }
         }
 
-        IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+       
+
+
+
     }
 }
