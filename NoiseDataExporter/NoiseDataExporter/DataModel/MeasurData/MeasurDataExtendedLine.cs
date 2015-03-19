@@ -14,6 +14,69 @@ namespace NoiseDataExporter.DataModel
             InitData(DataStrArray);
         }
 
+        public MeasurDataExtendedLine(
+            double Usample,
+            double Current,
+            double Req,
+            string FileName,
+            double Rload,
+            double Uwhole,
+            double U0Sample,
+            double U0whole,
+            double R0sample,
+            double Resample,
+            double Temperature0,
+            double TempleratureE,
+            int AmplificationFactor,
+            int AverageNumber,
+            double VoltageGate,
+            double GR1Si,
+            double GR1f,
+            double GR2Si,
+            double GR2f,
+            double GR3Si,
+            double GR3f,
+            double GR4Si,
+            double GR4f,
+            double GR5Si,
+            double GR5f,
+            double AFlicker,
+            double AlphaFlicker,
+            double fSiFlicker,
+            double fSiFlickerDivSqrI)
+            : base(
+                Usample,
+                Current,
+                Req,
+                FileName,
+                Rload,
+                Uwhole,
+                U0Sample,
+                U0whole,
+                R0sample,
+                Resample,
+                Temperature0,
+                TempleratureE,
+                AmplificationFactor,
+                AverageNumber,
+                VoltageGate)
+        {
+            m_gr1f = GR1f;
+            m_gr2f = GR2f;
+            m_gr3f = GR3f;
+            m_gr4f = GR4f;
+            m_gr5f = GR5f;
+            m_gr1Si = GR1Si;
+            m_gr2Si = GR2Si;
+            m_gr3Si = GR3Si;
+            m_gr4Si = GR4Si;
+            m_gr5Si = GR5Si;
+            m_Aflicker = AFlicker;
+            m_Alphaflicker = AlphaFlicker;
+            m_fSiFlicker = fSiFlicker;
+            m_fSiFlickerDivSqrI = fSiFlickerDivSqrI;
+        }
+
         public override string ToString()
         {
             string StringFormat = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\t{14}";
