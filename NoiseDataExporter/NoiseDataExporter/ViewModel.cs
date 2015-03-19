@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 namespace NoiseDataExporter
 {
@@ -94,8 +95,21 @@ namespace NoiseDataExporter
                 }
             }
         }
+        
+        private IPointDataSource m_IVcurve;
 
-
+        public IPointDataSource IVCurve
+        {
+            get { return m_IVcurve; }
+            set
+            {
+                m_IVcurve = value;
+                OnPropertyChanged("IVCurve");
+            }
+        }
+        
+       
+        
 
     }
 }

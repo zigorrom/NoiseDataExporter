@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace NoiseDataExporter
 {
-    public class Core
+   /* public class Core
     {
         public Core()
         {
@@ -82,5 +82,5 @@ namespace NoiseDataExporter
 
 
 
-    }
+    }*/
 }

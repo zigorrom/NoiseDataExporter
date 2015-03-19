@@ -1,6 +1,10 @@
-﻿using System;
+﻿using DynamicDataDisplay.Markers.DataSources;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
+using NoiseDataExporter.DataModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +29,7 @@ namespace NoiseDataExporter
         private ViewModel m_ViewModel;
         private FolderBrowserDialog m_fbd;
         private OpenFileDialog m_ofd;
-        private Core m_core;
+        //private Core m_core;
         private BackgroundWorker m_worker;
         
 
@@ -33,8 +37,11 @@ namespace NoiseDataExporter
         public MainWindow()
         {
             InitializeComponent();
-            m_core = new Core();
-            m_ViewModel = m_core.CoreViewModel;
+
+            m_AverageDSVoltage = 0;
+            m_DSVoltagesSum = 0;
+            //m_core = new Core();
+            m_ViewModel = new ViewModel();//m_core.CoreViewModel;
             this.DataContext = m_ViewModel;
             m_fbd = new FolderBrowserDialog();
             m_ofd = new OpenFileDialog();
@@ -61,15 +68,79 @@ namespace NoiseDataExporter
         {
             throw new NotImplementedException();
         }
+        
+        
+        private const string MeasureDataFilename = "MeasurData.dat";
+        private const string MeasureDataExtendedFileName = "MeasurDataExtended.dat";
+        private const double DrainSourceVoltageError = 0.005;
+        private const char ValueCharSeparator = '\t';
+
+        private double m_AverageDSVoltage;
+        private double m_DSVoltagesSum;
+       
+        private List<MeasurDataExtendedLine> m_CurrentDSVoltageList;
+        private string MeasurDataExtendedFN;
+        
 
         void m_worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var worker = (BackgroundWorker)sender;
-            if (!m_core.PrepareToProcessData())
-                return;
-
            
+            var worker = (BackgroundWorker)sender;
+            
+            
+            var HeaderStr = "";
+            var UnitStr = "";
+
+            
+            if(!File.Exists(MeasurDataExtendedFN))
+                return;
+            using(StreamReader sr = new StreamReader(MeasurDataExtendedFN))
+            {
+                HeaderStr = sr.ReadLine();
+                UnitStr = sr.ReadLine();
+                while(!sr.EndOfStream)
+                {
+                    var line = sr.ReadLine();
+                    var strValues = line.Split(ValueCharSeparator);
+                    var MeasurData = new MeasurDataExtendedLine(strValues);
+                    if(m_CurrentDSVoltageList.Count==0)
+                    {
+                        m_AverageDSVoltage = m_DSVoltagesSum = MeasurData.USample;
+                        m_CurrentDSVoltageList.Add(MeasurData);
+                    }
+                    else
+                    {
+                        if (Math.Abs(MeasurData.USample - m_AverageDSVoltage) > DrainSourceVoltageError)
+                        {
+                            ProcessCurrentDataSet();
+                            m_AverageDSVoltage = m_DSVoltagesSum = MeasurData.USample;
+                            m_CurrentDSVoltageList.Add(MeasurData);
+                        }
+                        else
+                        {
+                            m_CurrentDSVoltageList.Add(MeasurData);
+                            m_DSVoltagesSum += MeasurData.USample;
+                            m_AverageDSVoltage = m_DSVoltagesSum / m_CurrentDSVoltageList.Count;
+                        }
+                    }
+                }
+
+            }
         }
+
+        private void ProcessCurrentDataSet()
+        {
+            var PointList = m_CurrentDSVoltageList.Select(x =>
+                {
+                    return new Point(x.VoltageGate, x.Current);
+                }
+            );
+            var DataSource = new EnumerableDataSource<Point>(PointList);
+            m_ViewModel.IVCurve = DataSource;
+
+        }
+
+        
 
         private void MenuItem_Click(object sender, System.Windows.RoutedEventArgs e)
         {

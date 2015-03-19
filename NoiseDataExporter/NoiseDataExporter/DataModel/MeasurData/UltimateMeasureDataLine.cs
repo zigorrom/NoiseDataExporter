@@ -13,7 +13,49 @@ namespace NoiseDataExporter.DataModel
             InitData(DataSrtArray);
         }
 
-        public UltimateMeasureDataLine(double Usample,
+        public UltimateMeasureDataLine(MeasurDataExtendedLine Data, double GmReference, double TresholdVoltage)
+            : base(
+                Data.USample,
+                Data.Current,
+                Data.ResistanceEquivalent,
+                Data.FileName,
+                Data.Rload,
+                Data.Uwhole,
+                Data.U0Sample,
+                Data.U0whole,
+                Data.R0sample,
+                Data.Resample,
+                Data.Temperature0,
+                Data.TemperatureE,
+                Data.AmplificationFactor,
+                Data.AverageNumber,
+                Data.VoltageGate,
+                Data.GR1Si,
+                Data.GR1f,
+                Data.GR2Si,
+                Data.GR2f,
+                Data.GR3Si,
+                Data.GR3f,
+                Data.GR4Si,
+                Data.GR4f,
+                Data.GR5Si,
+                Data.GR5f,
+                Data.AFlicker,
+                Data.AlphaFlicker,
+                Data.fSiFlicker,
+                Data.fSiFlickerDivSqrI
+                )
+        {
+            InitData(GmReference, TresholdVoltage);
+        }
+
+        private void InitData(double GmReference, double TresholdVoltage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UltimateMeasureDataLine(
+            double Usample,
             double Current,
             double Req,
             string FileName,

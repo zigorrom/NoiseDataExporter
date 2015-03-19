@@ -8,12 +8,41 @@ namespace NoiseDataExporter.DataModel
 {
     public class MeasurDataLine
     {
+        public MeasurDataLine()
+        {
+
+        }
+
         public MeasurDataLine(string[] DataStrArray)
         {
             InitData(DataStrArray);
         }
 
         public MeasurDataLine(double Usample, double Current, double Req, string FileName, double Rload, double Uwhole, double U0Sample, double U0whole, double R0sample, double Resample, double Temperature0, double TempleratureE, int AmplificationFactor, int AverageNumber, double VoltageGate)
+        {
+            InitData(Usample, Current, Req, FileName, Rload, Uwhole, U0Sample, U0whole, R0sample, Resample, Temperature0, TempleratureE, AmplificationFactor, AverageNumber, VoltageGate);
+        }
+        protected MeasurDataLine(MeasurDataLine Data)
+        {
+            InitData(
+                Data.USample,
+                Data.Current,
+                Data.ResistanceEquivalent,
+                Data.FileName,
+                Data.Rload,
+                Data.Uwhole,
+                Data.U0Sample,
+                Data.U0whole,
+                Data.R0sample,
+                Data.Resample,
+                Data.Temperature0,
+                Data.TemperatureE,
+                Data.AmplificationFactor,
+                Data.AverageNumber,
+                Data.VoltageGate);
+        }
+
+        private void InitData(double Usample, double Current, double Req, string FileName, double Rload, double Uwhole, double U0Sample, double U0whole, double R0sample, double Resample, double Temperature0, double TempleratureE, int AmplificationFactor, int AverageNumber, double VoltageGate)
         {
             m_USample = Usample;
             m_Current = Current;
@@ -31,7 +60,6 @@ namespace NoiseDataExporter.DataModel
             m_NAver = AverageNumber;
             m_Vgate = VoltageGate;
         }
-
         private void InitData(string[] DataStrArray)
         {
             var StrDataArray = DataStrArray;

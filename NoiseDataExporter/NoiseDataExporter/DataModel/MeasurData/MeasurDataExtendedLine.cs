@@ -13,6 +13,8 @@ namespace NoiseDataExporter.DataModel
         {
             InitData(DataStrArray);
         }
+        
+        
 
         public MeasurDataExtendedLine(
             double Usample,
@@ -61,6 +63,41 @@ namespace NoiseDataExporter.DataModel
                 AverageNumber,
                 VoltageGate)
         {
+            InitData(GR1Si, GR1f, GR2Si, GR2f, GR3Si, GR3f, GR4Si, GR4f, GR5Si, GR5f, AFlicker, AlphaFlicker, fSiFlicker, fSiFlickerDivSqrI);
+        }
+
+        
+        private void InitData(string[] DataStrArray)
+        {
+
+            try
+            {
+                GR1f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR1f0Index]);
+                GR1Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR1Si0Index]);
+                GR2f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR2f0Index]);
+                GR2Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR2Si0Index]);
+                GR3f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR3f0Index]);
+                GR3Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR3Si0Index]);
+                GR4f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR4f0Index]);
+                GR4Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR4Si0Index]);
+                GR5f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR5f0Index]);
+                GR5Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR5Si0Index]);
+                AFlicker = double.Parse(DataStrArray[MeasurDataExtendedHeader.AflickerIndex]);
+                AlphaFlicker = double.Parse(DataStrArray[MeasurDataExtendedHeader.AlphaFlickerIndex]);
+                fSiFlicker = double.Parse(DataStrArray[MeasurDataExtendedHeader.fSiFlicker]);
+                fSiFlickerDivSqrI = double.Parse(DataStrArray[MeasurDataExtendedHeader.fSiFlickerDivSqrI]);
+            }
+
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+        }
+
+        private void InitData(double GR1Si, double GR1f, double GR2Si, double GR2f, double GR3Si, double GR3f, double GR4Si, double GR4f, double GR5Si, double GR5f, double AFlicker, double AlphaFlicker, double fSiFlicker, double fSiFlickerDivSqrI)
+        {
             m_gr1f = GR1f;
             m_gr2f = GR2f;
             m_gr3f = GR3f;
@@ -76,7 +113,6 @@ namespace NoiseDataExporter.DataModel
             m_fSiFlicker = fSiFlicker;
             m_fSiFlickerDivSqrI = fSiFlickerDivSqrI;
         }
-
         public override string ToString()
         {
             string StringFormat = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\t{14}";
@@ -99,34 +135,7 @@ namespace NoiseDataExporter.DataModel
                 );
         }
 
-        private void InitData(string[] DataStrArray)
-        {
-
-            try
-            {
-                GR1f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR1f0Index]);
-                GR1Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR1Si0Index]);
-                GR2f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR2f0Index]);
-                GR2Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR2Si0Index]);
-                GR3f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR3f0Index]);
-                GR3Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR3Si0Index]);
-                GR4f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR4f0Index]);
-                GR4Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR4Si0Index]);
-                GR5f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR5f0Index]);
-                GR5Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR5Si0Index]);
-                AFlicker = double.Parse(DataStrArray[MeasurDataExtendedHeader.AflickerIndex]);
-                AlphaFlicker = double.Parse(DataStrArray[MeasurDataExtendedHeader.AlphaFlickerIndex]);
-                fSiFlicker = double.Parse(DataStrArray[MeasurDataExtendedHeader.fSiFlicker]);
-                fSiFlickerDivSqrI = double.Parse(DataStrArray[MeasurDataExtendedHeader.fSiFlickerDivSqrI]);
-            }
-            
-            catch (Exception e)
-            {
-
-                throw;
-            }
-
-        }
+       
 
         private double m_gr1Si;
         public double GR1Si

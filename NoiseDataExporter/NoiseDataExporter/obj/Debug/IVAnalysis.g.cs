@@ -9,15 +9,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using DynamicDataDisplay.Markers;
+using DynamicDataDisplay.Markers.MarkerGenerators;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Charts;
 using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
+using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
+using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+using Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network;
 using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
+using Microsoft.Research.DynamicDataDisplay.Charts.Selectors;
 using Microsoft.Research.DynamicDataDisplay.Charts.Shapes;
 using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
+using Microsoft.Research.DynamicDataDisplay.Converters;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using Microsoft.Research.DynamicDataDisplay.Maps.Charts;
+using Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering;
+using Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields.Streamlines;
+using Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom;
+using Microsoft.Research.DynamicDataDisplay.Maps.Servers;
+using Microsoft.Research.DynamicDataDisplay.Maps.Servers.FileServers;
+using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+using Microsoft.Research.DynamicDataDisplay.Markers.MarkerGenerators.Rendering;
+using Microsoft.Research.DynamicDataDisplay.MarkupExtensions;
 using Microsoft.Research.DynamicDataDisplay.Navigation;
 using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+using Microsoft.Research.DynamicDataDisplay.ViewportConstraints;
 using System;
 using System.Diagnostics;
 using System.Windows;
