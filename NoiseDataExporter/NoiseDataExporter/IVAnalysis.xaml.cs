@@ -20,11 +20,14 @@ namespace NoiseDataExporter
     /// </summary>
     public partial class IVAnalysis : Window
     {
-        public IVAnalysis()
+        public IVAnalysis(ViewModel model) 
         {
             InitializeComponent();
+            this.DataContext = model;
             
         }
 
+
+        
     }
 }

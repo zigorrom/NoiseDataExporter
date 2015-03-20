@@ -5,8 +5,14 @@
         Title="IVAnalysis" Height="442" Width="627" d:DataContext="{d:DesignInstance {x:Type local:ViewModel}}">
 	<Grid>
 
-        
-		<!--<d3:ChartPlotter DataContext="{Binding Mode=OneWay}" Content="{Binding IVCurve}"/>-->
+
+        <d3:ChartPlotter>
+            
+            <d3:LineGraph x:Name="IVCurve" Stroke="Red" StrokeThickness="3"/>
+            <d3:LineGraph x:Name="LinearFit" Stroke="Black" StrokeThickness="2"/>
+            <d3:VerticalLine x:Name="LeftLimit" Stroke="Blue" StrokeThickness="3"/>
+            <d3:VerticalLine x:Name="RightLimit" Stroke="Blue" StrokeThickness="3"/>
+        </d3:ChartPlotter>
         
 	</Grid>
 </Window>
