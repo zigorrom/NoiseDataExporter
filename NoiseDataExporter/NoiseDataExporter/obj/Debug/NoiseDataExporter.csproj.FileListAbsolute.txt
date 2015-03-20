@@ -26,8 +26,6 @@ C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDat
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.dll
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter_MarkupCompile.lref
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\IVAnalysis.baml
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\IVAnalysis.g.cs
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\NoiseDataExporter.exe.config
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.exe
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.pdb
@@ -52,3 +50,8 @@ C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataE
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csproj.GenerateResource.Cache
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\App.baml
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\App.baml
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\LinearFitControl.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\LinearFitControl.pdb
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csprojResolveAssemblyReference.cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\Window1.baml
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\Window1.g.cs

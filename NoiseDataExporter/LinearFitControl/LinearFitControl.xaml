@@ -21,11 +21,11 @@
             <d3:HorizontalAxisTitle Content="Voltage, V"/>
             <d3:VerticalAxisTitle Content="Current, A"/>
 
-            <d3:LineGraph x:Name="Curve" Stroke="Black" StrokeThickness="3"/>
+            <d3:LineGraph x:Name="Curve" Stroke="Black" StrokeThickness="3" DataSource="{Binding Path=DataSource,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <d3:LineGraph x:Name="FitCurve" Stroke="Red" StrokeThickness="2"/>
-            <d3:VerticalLine x:Name="LeftVerticalLine" Value="{Binding LeftMarkerPosition}"/>
-            <d3:VerticalLine x:Name="RightVerticalLine" Value="{Binding RightMarkerPosition}"/>
-
+            <d3:VerticalLine x:Name="LeftVerticalLine" Value="{Binding Path=LeftMarkerPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <d3:VerticalLine x:Name="RightVerticalLine" Value="{Binding Path=RightMarkerPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            
         </d3:ChartPlotter>
         <Button x:Name="DoneButton" Content="Done" Margin="5" Grid.Row="1" Grid.Column="1" Click="DoneButton_Click"/>
     </Grid>

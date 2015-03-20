@@ -41,8 +41,11 @@ namespace NoiseDataExporter
             m_AverageDSVoltage = 0;
             m_DSVoltagesSum = 0;
             m_CurrentDSVoltageList = new List<MeasurDataExtendedLine>();
-            //var w = new Window1();
-            //w.ShowDialog();
+            var w = new Window1();
+
+            
+            
+            w.ShowDialog();
             
             //m_core = new Core();
             m_ViewModel = new ViewModel();//m_core.CoreViewModel;
@@ -153,9 +156,9 @@ namespace NoiseDataExporter
 
                 this.Dispatcher.Invoke(new Action<ViewModel>((x) =>
                 {
-                    var ivAnalysis = new IVAnalysis(x);
-                    ivAnalysis.WindowState = System.Windows.WindowState.Maximized;
-                    ivAnalysis.ShowDialog();
+                    //var ivAnalysis = new IVAnalysis(x);
+                    //ivAnalysis.WindowState = System.Windows.WindowState.Maximized;
+                    //ivAnalysis.ShowDialog();
                 }),m_ViewModel);
                 
             }

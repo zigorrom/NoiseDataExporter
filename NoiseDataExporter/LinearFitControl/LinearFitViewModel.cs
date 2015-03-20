@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -110,7 +111,28 @@ namespace LinearFitControl
             }
         }
 
+        private List<Point> m_data;
 
+        public List<Point> Data
+        {
+            get { return m_data; }
+            set {
+                m_data = value;
+                DataSource = new EnumerableDataSource<Point>(m_data);
+                OnPropertyChanged("Data");
+            }
+        }
+
+        private IPointDataSource m_dataSource;
+
+        public IPointDataSource DataSource
+        {
+            get { return m_dataSource; }
+            set {
+                m_dataSource = value;
+                OnPropertyChanged("DataSource");
+            }
+        }
 
 
 

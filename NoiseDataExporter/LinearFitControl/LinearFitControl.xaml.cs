@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Research.DynamicDataDisplay;
 
 namespace LinearFitControl
 {
@@ -22,12 +23,15 @@ namespace LinearFitControl
     /// </summary>
     public partial class LinearFitControl : UserControl
     {
-
+        
         private LinearFitViewModel m_viewModel;
+        private List<Point> m_data;
+
         public LinearFitControl()
-        {
+        { 
             InitializeComponent();
             m_viewModel = new LinearFitViewModel();
+            DataContext = m_viewModel;
             var lp = new Point(0, 0);
             var rp = new Point(1, 0);
             var LeftDraggablePoint = new DraggablePoint(lp);
@@ -38,14 +42,13 @@ namespace LinearFitControl
             m_viewModel.LeftMarkerPosition = lp.X;
             m_viewModel.RightMarkerPosition = rp.X;
 
-            
             LinearFitPlotter.Children.Add(LeftDraggablePoint);
             LinearFitPlotter.Children.Add(RightDraggablePoint);
 
             var LeftVerticalLineBinding = new Binding("LeftMarkerPosition");
             LeftVerticalLineBinding.Source = m_viewModel;
             LeftVerticalLine.SetBinding(VerticalLine.ValueProperty, LeftVerticalLineBinding);
-
+            
             var RigthVerticalLineBinding = new Binding("RightMarkerPosition");
             RigthVerticalLineBinding.Source = m_viewModel;
             RightVerticalLine.SetBinding(VerticalLine.ValueProperty, RigthVerticalLineBinding);
@@ -53,16 +56,31 @@ namespace LinearFitControl
         void rightDraggablePoint_PositionChanged(object sender, PositionChangedEventArgs e)
         {
             m_viewModel.RightMarkerPosition = e.Position.X;
+            OnRangeChanged();
+        }
+
+        private void OnRangeChanged()
+        {
+            //throw new NotImplementedException();
         }
 
         void leftDraggablePoint_PositionChanged(object sender, PositionChangedEventArgs e)
         {
             m_viewModel.LeftMarkerPosition = e.Position.X;
+            OnRangeChanged();
         }
 
         private void DoneButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            // TODO: Add event handler implementation here.
+           // MathNet.Numerics.Fit.Line();
+            // TODO: Add event handler implementation here
         }
+
+        public void SetData(List<Point> Data)
+        {
+            m_viewModel.Data = Data;
+            LinearFitPlotter.AddLineGraph(m_viewModel.DataSource);
+        }
+
     }
 }

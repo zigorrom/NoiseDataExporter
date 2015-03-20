@@ -7,8 +7,7 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="/IVAnalysis;component/ProjectDataSources.xaml"/>
-				<ResourceDictionary Source="/LinearFit;component/ProjectDataSources.xaml"/>
+				
 			</ResourceDictionary.MergedDictionaries>
 			<local:ViewModel x:Key="ViewModelDataSource" d:IsDataSource="True"/>
 		</ResourceDictionary>
