@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,26 +61,49 @@ namespace NoiseDataExporter.DataModel
             m_NAver = AverageNumber;
             m_Vgate = VoltageGate;
         }
+
+        //internal virtual bool ParseString(string str, out double value)
+        //{
+        //    //value = 0;
+        //    return double.TryParse(str, NumberStyles.Float, new NumberFormatInfo() { NumberDecimalSeparator=".", NumberGroupSeparator = "" }, out value);
+        //    //var result = double.Parse(str, System.Globalization.NumberStyles.Float, new NumberFormatInfo() { CurrencyDecimalSeparator = ".", CurrencyGroupSeparator = "" });
+        //    //return result;
+        //}
+
+        //internal virtual bool ParseString(string str, out int value)
+        //{
+        //    return int.TryParse(str, NumberStyles.Float, new NumberFormatInfo() { NumberDecimalSeparator=".", NumberGroupSeparator = "" }, out value);
+        //}
+
+        public double DoubleFromString(string str)
+        {
+            return double.Parse(str, NumberStyles.Float, new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" });
+        }
+
+        public int IntFromString(string str)
+        {
+            return int.Parse(str, NumberStyles.Float, new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" });
+        }
         private void InitData(string[] DataStrArray)
         {
             var StrDataArray = DataStrArray;
             try
             {
-                USample = double.Parse(StrDataArray[MeasurDataHeader.USampleIndex]);
-                Current = double.Parse(StrDataArray[MeasurDataHeader.CurrentIndex]);
-                ResistanceEquivalent = double.Parse(StrDataArray[MeasurDataHeader.ReqIndex]);
+                USample = DoubleFromString(StrDataArray[MeasurDataHeader.USampleIndex]);//double.Parse(StrDataArray[MeasurDataHeader.USampleIndex]);
+                Current = DoubleFromString(StrDataArray[MeasurDataHeader.CurrentIndex]);
+                ResistanceEquivalent = DoubleFromString(StrDataArray[MeasurDataHeader.ReqIndex]);
                 FileName = StrDataArray[MeasurDataHeader.FileNameIndex];
-                Rload = double.Parse(StrDataArray[MeasurDataHeader.RloadIndex]);
-                Uwhole = double.Parse(StrDataArray[MeasurDataHeader.UwholeIndex]);
-                U0Sample = double.Parse(StrDataArray[MeasurDataHeader.U0sampleIndex]);
-                U0whole = double.Parse(StrDataArray[MeasurDataHeader.U0wholeIndex]);
-                R0sample = double.Parse(StrDataArray[MeasurDataHeader.R0sampleIndex]);
-                Resample = double.Parse(StrDataArray[MeasurDataHeader.ResampleIndex]);
-                Temperature0 = double.Parse(StrDataArray[MeasurDataHeader.Temperature0Index]);
-                TemperatureE = double.Parse(StrDataArray[MeasurDataHeader.TemperatureEIndex]);
-                AmplificationFactor = int.Parse(StrDataArray[MeasurDataHeader.KamplIndex]);
-                AverageNumber = int.Parse(StrDataArray[MeasurDataHeader.NaverIndex]);
-                VoltageGate = double.Parse(StrDataArray[MeasurDataHeader.VGateIndex]);
+                Rload = DoubleFromString(StrDataArray[MeasurDataHeader.RloadIndex]);
+                Uwhole = DoubleFromString(StrDataArray[MeasurDataHeader.UwholeIndex]);
+                U0Sample = DoubleFromString(StrDataArray[MeasurDataHeader.U0sampleIndex]);
+                U0whole = DoubleFromString(StrDataArray[MeasurDataHeader.U0wholeIndex]);
+                R0sample = DoubleFromString(StrDataArray[MeasurDataHeader.R0sampleIndex]);
+                Resample = DoubleFromString(StrDataArray[MeasurDataHeader.ResampleIndex]);
+                Temperature0 = DoubleFromString(StrDataArray[MeasurDataHeader.Temperature0Index]);
+                TemperatureE = DoubleFromString(StrDataArray[MeasurDataHeader.TemperatureEIndex]);
+                AmplificationFactor = IntFromString(StrDataArray[MeasurDataHeader.KamplIndex]);
+                AverageNumber = IntFromString(StrDataArray[MeasurDataHeader.NaverIndex]);
+                VoltageGate = DoubleFromString(StrDataArray[MeasurDataHeader.VGateIndex]);
             }
             catch (Exception e)
             {

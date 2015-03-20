@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Microsoft.Research.DynamicDataDisplay;
 
 namespace NoiseDataExporter
 {
@@ -24,7 +24,11 @@ namespace NoiseDataExporter
         {
             InitializeComponent();
             this.DataContext = model;
-            
+            this.IVPlotter.AddLineGraph(model.IVCurve);
+            //foreach (Point point in model.IVCurve)
+            //{
+
+            //}
         }
 
 

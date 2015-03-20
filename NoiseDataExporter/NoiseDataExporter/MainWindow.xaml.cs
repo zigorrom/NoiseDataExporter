@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.Markers.DataSources;
+﻿
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using NoiseDataExporter.DataModel;
 using System;
@@ -32,7 +32,7 @@ namespace NoiseDataExporter
         //private Core m_core;
         private BackgroundWorker m_worker;
 
-        private IVAnalysis m_ivAnalysis;
+        //private IVAnalysis m_ivAnalysis;
 
         public MainWindow()
         {
@@ -45,8 +45,8 @@ namespace NoiseDataExporter
             //m_core = new Core();
             m_ViewModel = new ViewModel();//m_core.CoreViewModel;
             this.DataContext = m_ViewModel;
-            m_ivAnalysis = new IVAnalysis();
-            m_ivAnalysis.DataContext = m_ViewModel;
+            //m_ivAnalysis = new IVAnalysis(m_ViewModel);
+            //m_ivAnalysis.DataContext = m_ViewModel;
             m_fbd = new FolderBrowserDialog();
             m_ofd = new OpenFileDialog();
             m_worker = new BackgroundWorker();
@@ -60,17 +60,17 @@ namespace NoiseDataExporter
 
         void m_worker_Disposed(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void m_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         void m_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
         
         
@@ -142,15 +142,29 @@ namespace NoiseDataExporter
                     }
                 );
 
-                var DataSource = new EnumerableDataSource<Point>(PointList);
-                m_ViewModel.IVCurve = DataSource;
-                this.Dispatcher.Invoke(new Action(() => m_ivAnalysis.ShowDialog()));
-                //m_ivAnalysis.ShowDialog();
                 
-            //ShowForm for treshold calc
+
+                var DataSource = new EnumerableDataSource<Point>(PointList);
+                DataSource.SetXMapping(x => x.X);
+                DataSource.SetYMapping(y => y.Y);
+                m_ViewModel.IVCurve = DataSource;
+
+                this.Dispatcher.Invoke(new Action<ViewModel>((x) =>
+                {
+                    var ivAnalysis = new IVAnalysis(x);
+                    ivAnalysis.WindowState = System.Windows.WindowState.Maximized;
+                    ivAnalysis.ShowDialog();
+                }),m_ViewModel);
+                
             }
+            ExportData();
             m_CurrentDSVoltageList.Clear();
 
+        }
+
+        private void ExportData()
+        {
+           // throw new NotImplementedException();
         }
 
         

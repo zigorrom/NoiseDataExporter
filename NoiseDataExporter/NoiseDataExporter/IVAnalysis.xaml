@@ -6,9 +6,15 @@
 	<Grid>
 
 
-        <d3:ChartPlotter>
-            
-            <d3:LineGraph x:Name="IVCurve" Stroke="Red" StrokeThickness="3"/>
+        <d3:ChartPlotter x:Name="IVPlotter" LegendVisible="True" >
+            <d3:Header Content="Transfer curve fitting"/>
+			<d3:HorizontalAxis>
+				<d3:HorizontalAxisTitle Content="Voltage"/>
+			</d3:HorizontalAxis>
+			<d3:VerticalAxis>
+				<d3:VerticalAxisTitle Content="Current"/>
+			</d3:VerticalAxis>
+            <d3:LineGraph x:Name="IVCurve"  Stroke="Red" StrokeThickness="3" />
             <d3:LineGraph x:Name="LinearFit" Stroke="Black" StrokeThickness="2"/>
             <d3:VerticalLine x:Name="LeftLimit" Stroke="Blue" StrokeThickness="3"/>
             <d3:VerticalLine x:Name="RightLimit" Stroke="Blue" StrokeThickness="3"/>

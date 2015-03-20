@@ -72,20 +72,20 @@ namespace NoiseDataExporter.DataModel
 
             try
             {
-                GR1f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR1f0Index]);
-                GR1Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR1Si0Index]);
-                GR2f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR2f0Index]);
-                GR2Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR2Si0Index]);
-                GR3f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR3f0Index]);
-                GR3Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR3Si0Index]);
-                GR4f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR4f0Index]);
-                GR4Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR4Si0Index]);
-                GR5f = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR5f0Index]);
-                GR5Si = double.Parse(DataStrArray[MeasurDataExtendedHeader.GR5Si0Index]);
-                AFlicker = double.Parse(DataStrArray[MeasurDataExtendedHeader.AflickerIndex]);
-                AlphaFlicker = double.Parse(DataStrArray[MeasurDataExtendedHeader.AlphaFlickerIndex]);
-                fSiFlicker = double.Parse(DataStrArray[MeasurDataExtendedHeader.fSiFlicker]);
-                fSiFlickerDivSqrI = double.Parse(DataStrArray[MeasurDataExtendedHeader.fSiFlickerDivSqrI]);
+                GR1f = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR1f0Index]);
+                GR1Si = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR1Si0Index]);
+                GR2f = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR2f0Index]);
+                GR2Si = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR2Si0Index]);
+                GR3f = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR3f0Index]);
+                GR3Si = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR3Si0Index]);
+                GR4f = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR4f0Index]);
+                GR4Si = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR4Si0Index]);
+                GR5f = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR5f0Index]);
+                GR5Si = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.GR5Si0Index]);
+                AFlicker = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.AflickerIndex]);
+                AlphaFlicker = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.AlphaFlickerIndex]);
+                fSiFlicker = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.fSiFlicker]);
+                fSiFlickerDivSqrI = DoubleFromString(DataStrArray[MeasurDataExtendedHeader.fSiFlickerDivSqrI]);
             }
 
             catch (Exception e)

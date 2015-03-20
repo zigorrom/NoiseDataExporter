@@ -139,11 +139,11 @@ namespace NoiseDataExporter.DataModel
         {
             try
             {
-                Gm = double.Parse(DataStrArray[UltimateMeasurDataHeader.gmIndex]);
-                SuIntegrated = double.Parse(DataStrArray[UltimateMeasurDataHeader.SuIntegratedIndex]);
-                SNR = double.Parse(DataStrArray[UltimateMeasurDataHeader.SNRIndex]);
-                TresholdVoltage = double.Parse(DataStrArray[UltimateMeasurDataHeader.TresholdVoltageIndex]);
-                OverdriveVoltage = double.Parse(DataStrArray[UltimateMeasurDataHeader.OverdriveVoltage]);
+                Gm = DoubleFromString(DataStrArray[UltimateMeasurDataHeader.gmIndex]);
+                SuIntegrated = DoubleFromString(DataStrArray[UltimateMeasurDataHeader.SuIntegratedIndex]);
+                SNR = DoubleFromString(DataStrArray[UltimateMeasurDataHeader.SNRIndex]);
+                TresholdVoltage = DoubleFromString(DataStrArray[UltimateMeasurDataHeader.TresholdVoltageIndex]);
+                OverdriveVoltage = DoubleFromString(DataStrArray[UltimateMeasurDataHeader.OverdriveVoltage]);
             }
             catch (Exception e)
             {
