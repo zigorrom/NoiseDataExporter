@@ -1,0 +1,15 @@
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\bin\Debug\DynamicDataDisplay.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\ProjectDataSources.baml
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFit.csproj.GenerateResource.Cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\bin\Debug\LinearFit.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\bin\Debug\LinearFit.pdb
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFit_MarkupCompile.cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFit.g.resources
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFit.Properties.Resources.resources
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFit.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFit.pdb
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFit.csprojResolveAssemblyReference.cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFit_MarkupCompile.lref
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFitControl.g.cs
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\LinearFitControl.baml

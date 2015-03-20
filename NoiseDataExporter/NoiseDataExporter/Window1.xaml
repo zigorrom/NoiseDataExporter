@@ -1,0 +1,11 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:LinearFit="clr-namespace:LinearFit;assembly=LinearFit" x:Class="NoiseDataExporter.Window1"
+        Title="Window1" Height="300" Width="300">
+    <Grid>
+
+        <LinearFit:IVAnalysisControl HorizontalAlignment="Left" Margin="-2,6,0,0" VerticalAlignment="Top" Height="259" Width="215"/>
+
+    </Grid>
+</Window>

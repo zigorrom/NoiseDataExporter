@@ -1,0 +1,36 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d3 ="http://research.microsoft.com/DynamicDataDisplay/1.0"
+			 xmlns:local="clr-namespace:LinearFit" x:Name="LinearFitControl" x:Class="LinearFit.IVAnalysisControl"
+			 mc:Ignorable="d" 
+             d:DesignHeight="363" d:DesignWidth="481" d:DataContext="{d:DesignInstance {x:Type local:LinearFitViewModel}}">
+	<UserControl.Resources>
+		<local:LinearFitViewModel x:Key="LinearFitViewModelDataSource" d:IsDataSource="True"/>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="120"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="40"/>
+		</Grid.RowDefinitions>
+        
+		<d3:ChartPlotter x:Name="IVPlotter" LegendVisible="True" Grid.ColumnSpan="2">
+			<d3:Header Content="IV analysis"/>
+			<d3:HorizontalAxisTitle Content="Voltage, V"/>
+			<d3:VerticalAxisTitle Content="Current, A"/>
+            
+			<d3:LineGraph x:Name="IVCurve" Stroke="Black" StrokeThickness="3"/>
+			<d3:LineGraph x:Name="FitCurve" Stroke="Red" StrokeThickness="2"/>
+			<d3:VerticalLine x:Name="LeftVerticalLine" Value="{Binding LeftMarkerPosition}"/>
+			<d3:VerticalLine x:Name="RightVerticalLine" Value="{Binding RightMarkerPosition}"/>
+            
+		</d3:ChartPlotter>
+		<Button x:Name="DoneButton" Content="Done" Margin="5" Grid.Row="1" Grid.Column="1" Click="DoneButton_Click"/>
+	</Grid>
+</UserControl>

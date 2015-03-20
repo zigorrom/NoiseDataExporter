@@ -1,0 +1,15 @@
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysis.csprojResolveAssemblyReference.cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysisControl.baml
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysisControl.g.cs
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysis_MarkupCompile.cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysis.g.resources
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysis.Properties.Resources.resources
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysis.csproj.GenerateResource.Cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\bin\Debug\IVAnalysis.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\bin\Debug\IVAnalysis.pdb
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\bin\Debug\DynamicDataDisplay.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysis.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysis.pdb
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\ProjectDataSources.baml
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\IVAnalysis\obj\Debug\IVAnalysis_MarkupCompile.lref
