@@ -5,8 +5,8 @@
         Title="IVAnalysis" Height="442" Width="627" d:DataContext="{d:DesignInstance {x:Type local:ViewModel}}">
 	<Grid>
 
-      
-		<d3:ChartPlotter DataContext="{Binding Mode=OneWay}" Content="{Binding IVCurve}"/>
+        
+		<!--<d3:ChartPlotter DataContext="{Binding Mode=OneWay}" Content="{Binding IVCurve}"/>-->
         
 	</Grid>
 </Window>
