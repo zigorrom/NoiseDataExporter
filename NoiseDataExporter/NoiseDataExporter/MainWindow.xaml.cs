@@ -31,8 +31,8 @@ namespace NoiseDataExporter
         private OpenFileDialog m_ofd;
         //private Core m_core;
         private BackgroundWorker m_worker;
-        
 
+        private IVAnalysis m_ivAnalysis;
 
         public MainWindow()
         {
@@ -40,9 +40,13 @@ namespace NoiseDataExporter
 
             m_AverageDSVoltage = 0;
             m_DSVoltagesSum = 0;
+            m_CurrentDSVoltageList = new List<MeasurDataExtendedLine>();
+            
             //m_core = new Core();
             m_ViewModel = new ViewModel();//m_core.CoreViewModel;
             this.DataContext = m_ViewModel;
+            m_ivAnalysis = new IVAnalysis();
+            m_ivAnalysis.DataContext = m_ViewModel;
             m_fbd = new FolderBrowserDialog();
             m_ofd = new OpenFileDialog();
             m_worker = new BackgroundWorker();
@@ -86,7 +90,7 @@ namespace NoiseDataExporter
         {
            
             var worker = (BackgroundWorker)sender;
-            
+            MeasurDataExtendedFN = String.Concat(m_ViewModel.WorkingDirectory, '\\', MeasureDataExtendedFileName);
             
             var HeaderStr = "";
             var UnitStr = "";
@@ -130,13 +134,22 @@ namespace NoiseDataExporter
 
         private void ProcessCurrentDataSet()
         {
-            var PointList = m_CurrentDSVoltageList.Select(x =>
-                {
-                    return new Point(x.VoltageGate, x.Current);
-                }
-            );
-            var DataSource = new EnumerableDataSource<Point>(PointList);
-            m_ViewModel.IVCurve = DataSource;
+            if (m_CurrentDSVoltageList.Count > 1)
+            {
+                var PointList = m_CurrentDSVoltageList.Select(x =>
+                    {
+                        return new Point(x.VoltageGate, x.Current);
+                    }
+                );
+
+                var DataSource = new EnumerableDataSource<Point>(PointList);
+                m_ViewModel.IVCurve = DataSource;
+                this.Dispatcher.Invoke(new Action(() => m_ivAnalysis.ShowDialog()));
+                //m_ivAnalysis.ShowDialog();
+                
+            //ShowForm for treshold calc
+            }
+            m_CurrentDSVoltageList.Clear();
 
         }
 
