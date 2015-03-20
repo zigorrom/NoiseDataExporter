@@ -1,0 +1,11 @@
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\LinearFitControl.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\LinearFitControl.pdb
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.baml
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.g.cs
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl_MarkupCompile.cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.g.resources
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.Properties.Resources.resources
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.csproj.GenerateResource.Cache
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.pdb
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\DynamicDataDisplay.dll

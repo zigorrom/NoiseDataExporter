@@ -51,9 +51,4 @@ C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataE
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.Properties.Resources.resources
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csproj.GenerateResource.Cache
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\App.baml
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csprojResolveAssemblyReference.cache
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\App.baml
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\LinearFit.dll
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\LinearFit.pdb
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\Window1.baml
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\Window1.g.cs
