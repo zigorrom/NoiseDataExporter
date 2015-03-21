@@ -24,7 +24,13 @@ namespace LinearFitControl
         public double MaxX
         {
             get { return m_MaxX;; }
-            set { m_MaxX = value; }
+            set {
+                if (value == m_MaxX)
+                    return;
+
+                m_MaxX = value;
+                OnPropertyChanged("MaxX");
+            }
         }
 
         private double m_MinX;
@@ -32,7 +38,12 @@ namespace LinearFitControl
         public double MinX
         {
             get { return m_MinX; }
-            set { m_MinX = value; }
+            set {
+                if (value == m_MinX)
+                    return;
+                m_MinX = value;
+                OnPropertyChanged("MinX");
+            }
         }
 
 
@@ -44,8 +55,12 @@ namespace LinearFitControl
             set {
                 if (value==m_LeftDraggablePoint)
                     return;
+                if (value.X < MinX)
+                    value.X = MinX;
+                if (value.X >= RightDraggablePoint.X)
+                    value.X = RightDraggablePoint.X;
                 m_LeftDraggablePoint = value;
-                LeftMarkerPosition = m_LeftDraggablePoint.X;
+                //LeftMarkerPosition = m_LeftDraggablePoint.X;
                 OnPropertyChanged("LeftDraggablePoint");
             }
         }
@@ -58,39 +73,13 @@ namespace LinearFitControl
             set {
                 if (m_RightDraggablePoint == value)
                     return;
+                if (value.X > MaxX)
+                    value.X = MaxX;
+                if (value.X <= LeftDraggablePoint.X)
+                    value.X = LeftDraggablePoint.X;
                 m_RightDraggablePoint = value;
-                RightMarkerPosition = m_RightDraggablePoint.X;
+                //RightMarkerPosition = m_RightDraggablePoint.X;
                 OnPropertyChanged("RightDraggablePoint");
-            }
-        }
-
-
-        private double m_LeftMarkerPosition;
-
-        public double LeftMarkerPosition
-        {
-            get { return m_LeftMarkerPosition; }
-            set
-            {
-                if (m_LeftMarkerPosition == value)
-                    return;
-                m_LeftMarkerPosition = value;
-                OnPropertyChanged("LeftMarkerPosition");
-
-            }
-        }
-
-        private double m_RightMarkerPosition;
-
-        public double RightMarkerPosition
-        {
-            get { return m_RightMarkerPosition; }
-            set
-            {
-                if (m_RightMarkerPosition == value)
-                    return;
-                m_RightMarkerPosition = value;
-                OnPropertyChanged("RightMarkerPosition");
             }
         }
 
@@ -109,19 +98,19 @@ namespace LinearFitControl
                 m_data.Sort(new Comparison<Point>((a, b) =>
                 {
                     if (a.X < b.X)
-                        return 1;
-                    if (a.X > b.X)
                         return -1;
+                    if (a.X > b.X)
+                        return 1;
                     return 0;
                 }));
                 DataSource = new EnumerableDataSource<Point>(m_data);
                 MinX = Data[0].X;
                 MaxX = Data[Data.Count - 1].X;
+                if (MaxX < MinX)
+                    throw new ArgumentException("MaxX<MinX");
                 LeftDraggablePoint = new Point(MinX, Data[0].Y);
                 RightDraggablePoint = new Point(MaxX, Data[Data.Count - 1].Y);
                 
-                //LeftMarkerPosition = MinX;
-                //RightMarkerPosition = MaxX;
                 OnPropertyChanged("Data");
             }
         }
@@ -152,8 +141,6 @@ namespace LinearFitControl
             {
                 m_dataSource = value;
                 m_dataSource.SetXYMapping(x => x);
-                //m_dataSource.SetXMapping(x => x.X);
-                //m_dataSource.SetYMapping(x => x.Y);
                 m_dataSource.RaiseDataChanged();
                 OnPropertyChanged("DataSource");
             }

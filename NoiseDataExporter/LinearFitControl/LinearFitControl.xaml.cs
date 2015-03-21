@@ -32,12 +32,10 @@ namespace LinearFitControl
         { 
             InitializeComponent();
             m_viewModel = new LinearFitViewModel();
-            
-
             DataContext = m_viewModel;
-            
-            var lp = new Point(0, 0);
-            var rp = new Point(1, 0);
+
+            //var lp = new Point(0, 0);
+            //var rp = new Point(1, 0);
             //var LeftDraggablePoint = new DraggablePoint(lp);
             //var RightDraggablePoint = new DraggablePoint(rp);
             //LeftDraggablePoint.PositionChanged += leftDraggablePoint_PositionChanged;
@@ -66,24 +64,10 @@ namespace LinearFitControl
             //m_Line = LinearFitPlotter.AddLineGraph(m_viewModel.DataSource);
             
 
-            LinearFitPlotter.FitToView();
+            //LinearFitPlotter.FitToView();
         }
-        void rightDraggablePoint_PositionChanged(object sender, PositionChangedEventArgs e)
-        {
-            //m_viewModel.RightMarkerPosition = e.Position.X;
-            OnRangeChanged();
-        }
-
-        private void OnRangeChanged()
-        {
-            
-        }
-
-        void leftDraggablePoint_PositionChanged(object sender, PositionChangedEventArgs e)
-        {
-            //m_viewModel.LeftMarkerPosition = e.Position.X;
-            OnRangeChanged();
-        }
+             
+        
 
         private void DoneButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
