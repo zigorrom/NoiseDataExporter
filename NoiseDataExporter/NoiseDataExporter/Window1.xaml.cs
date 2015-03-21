@@ -27,5 +27,17 @@ namespace NoiseDataExporter
             data.Add(new Point(1, 1));
             Petro.SetData(data);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var rand = new Random();
+            var data = new List<Point>();
+
+            for (int i = 0; i < rand.Next(3,100); i++)
+            {
+                data.Add(new Point(rand.NextDouble()*1000, rand.NextDouble()));
+            }
+            Petro.SetData(data);
+        }
     }
 }

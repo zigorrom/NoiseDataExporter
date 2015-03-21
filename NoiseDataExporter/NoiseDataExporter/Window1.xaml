@@ -5,5 +5,6 @@
         Title="Window1" Height="366.667" Width="499.334">
     <Grid>
         <LinearFitControl:LinearFitControl x:Name="Petro"/>
+        <Button Content="Button" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

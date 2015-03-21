@@ -1,4 +1,5 @@
 ﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using Microsoft.Research.DynamicDataDisplay;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,66 +19,48 @@ namespace LinearFitControl
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        private double m_DSvoltage;
+        private double m_MaxX;
 
-        public double DSVoltage
+        public double MaxX
         {
-            get { return m_DSvoltage; }
-            set
-            {
-                if (m_DSvoltage == value)
-                    return;
-                m_DSvoltage = value;
-                OnPropertyChanged("DSVoltage");
-            }
+            get { return m_MaxX;; }
+            set { m_MaxX = value; }
         }
 
-        private double m_TresholdVoltage;
+        private double m_MinX;
 
-        public double TresholdVoltage
+        public double MinX
         {
-            get { return m_TresholdVoltage; }
-            set
-            {
-                if (m_TresholdVoltage == value)
-                    return;
-                m_TresholdVoltage = value;
-                OnPropertyChanged("TresholdVoltage");
-            }
+            get { return m_MinX; }
+            set { m_MinX = value; }
         }
 
 
-        private Point m_LeftDraggablePointPosition;
+        private Point m_LeftDraggablePoint;
 
-        public Point LeftDraggablePointPosition
+        public Point LeftDraggablePoint
         {
-            get { return m_LeftDraggablePointPosition; }
-            set
-            {
-                if (m_LeftDraggablePointPosition == value)
+            get { return m_LeftDraggablePoint; }
+            set {
+                if (value==m_LeftDraggablePoint)
                     return;
-                if (value.X > m_RightDraggablePointPosition.X)
-                    m_LeftDraggablePointPosition = new Point(m_LeftDraggablePointPosition.X, value.Y);
-                m_LeftDraggablePointPosition = value;
-                m_LeftMarkerPosition = m_LeftDraggablePointPosition.X;
-                OnPropertyChanged("LeftDraggablePointPosition");
+                m_LeftDraggablePoint = value;
+                LeftMarkerPosition = m_LeftDraggablePoint.X;
+                OnPropertyChanged("LeftDraggablePoint");
             }
         }
 
-        private Point m_RightDraggablePointPosition;
+        private Point m_RightDraggablePoint;
 
-        public Point RightDraggablePointPosition
+        public Point RightDraggablePoint
         {
-            get { return m_RightDraggablePointPosition; }
-            set
-            {
-                if (m_RightDraggablePointPosition == value)
+            get { return m_RightDraggablePoint; }
+            set {
+                if (m_RightDraggablePoint == value)
                     return;
-                if (value.X < m_LeftDraggablePointPosition.X)
-                    m_RightDraggablePointPosition = new Point(m_RightDraggablePointPosition.X, value.Y);
-                m_RightDraggablePointPosition = value;
-                m_RightMarkerPosition = m_RightDraggablePointPosition.X;
-                OnPropertyChanged("RightDraggablePointPosition");
+                m_RightDraggablePoint = value;
+                RightMarkerPosition = m_RightDraggablePoint.X;
+                OnPropertyChanged("RightDraggablePoint");
             }
         }
 
@@ -116,22 +99,90 @@ namespace LinearFitControl
         public List<Point> Data
         {
             get { return m_data; }
-            set {
+            set
+            {
+                if (value == null)
+                    return;
+                if (value.Count == 0)
+                    return;
                 m_data = value;
+                m_data.Sort(new Comparison<Point>((a, b) =>
+                {
+                    if (a.X < b.X)
+                        return 1;
+                    if (a.X > b.X)
+                        return -1;
+                    return 0;
+                }));
                 DataSource = new EnumerableDataSource<Point>(m_data);
+                MinX = Data[0].X;
+                MaxX = Data[Data.Count - 1].X;
+                LeftDraggablePoint = new Point(MinX, Data[0].Y);
+                RightDraggablePoint = new Point(MaxX, Data[Data.Count - 1].Y);
+                
+                //LeftMarkerPosition = MinX;
+                //RightMarkerPosition = MaxX;
                 OnPropertyChanged("Data");
             }
         }
 
-        private IPointDataSource m_dataSource;
+        private double[] m_DataXArray;
 
-        public IPointDataSource DataSource
+        public double[] DataXArray
+        {
+            get { return m_DataXArray; }
+            set { m_DataXArray = value; }
+        }
+
+        private double[] m_DataYArray;
+
+        public double[] DataYArray
+        {
+            get { return m_DataYArray; }
+            set { m_DataYArray = value; }
+        }
+
+
+        private EnumerableDataSource<Point> m_dataSource;
+
+        public EnumerableDataSource<Point> DataSource
         {
             get { return m_dataSource; }
-            set {
+            set
+            {
                 m_dataSource = value;
+                m_dataSource.SetXYMapping(x => x);
+                //m_dataSource.SetXMapping(x => x.X);
+                //m_dataSource.SetYMapping(x => x.Y);
+                m_dataSource.RaiseDataChanged();
                 OnPropertyChanged("DataSource");
             }
+        }
+
+
+
+        private double m_intercept;
+
+        public double Intercept
+        {
+            get { return m_intercept; }
+            set { m_intercept = value; }
+        }
+
+        private double m_slope;
+
+        public double Slope
+        {
+            get { return m_slope; }
+            set { m_slope = value; }
+        }
+
+        private double m_ZeroCrossingPointX;
+
+        public double ZeroCrossingPointX
+        {
+            get { return m_ZeroCrossingPointX; }
+            set { m_ZeroCrossingPointX = value; }
         }
 
 
