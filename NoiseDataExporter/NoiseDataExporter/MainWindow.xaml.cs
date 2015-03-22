@@ -2,6 +2,7 @@
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using NoiseDataExporter.DataModel;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -22,6 +23,49 @@ using System.Windows.Shapes;
 
 namespace NoiseDataExporter
 {
+
+    public class ExportDataContainer : List<MeasurDataExtendedLine>
+    {
+        public ExportDataContainer()
+            : base()
+        {
+
+        }
+
+        public void Add(MeasurDataExtendedLine line)
+        {
+            base.Add(line);
+            DSVoltagesSum += line.USample;
+            AverageDSVoltage = DSVoltagesSum / base.Count;
+        }
+
+        private double m_AverageDSVoltage;
+
+        public double AverageDSVoltage
+        {
+            get { return m_AverageDSVoltage; }
+            set { m_AverageDSVoltage = value; }
+        }
+
+        private double m_DSVoltagesSum;
+
+        public double DSVoltagesSum
+        {
+            get { return m_DSVoltagesSum; }
+            set { m_DSVoltagesSum = value; }
+        }
+
+        public List<Point> GetIVcurve()
+        {
+            var PointList = this.Select(x =>
+  {
+      return new Point(x.VoltageGate, x.Current);
+  }
+      ).ToList();
+            return PointList;
+        }
+
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -34,6 +78,7 @@ namespace NoiseDataExporter
         private LogControl m_logControl;
         //private Core m_core;
         private BackgroundWorker m_worker;
+        private ConcurrentQueue<ExportDataContainer> m_queue;
 
         //private IVAnalysis m_ivAnalysis;
 
