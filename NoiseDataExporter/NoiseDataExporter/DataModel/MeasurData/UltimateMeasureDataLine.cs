@@ -13,7 +13,7 @@ namespace NoiseDataExporter.DataModel
             InitData(DataSrtArray);
         }
 
-        public UltimateMeasureDataLine(MeasurDataExtendedLine Data, double GmReference, double TresholdVoltage)
+        public UltimateMeasureDataLine(MeasurDataExtendedLine Data)
             : base(
                 Data.USample,
                 Data.Current,
@@ -46,7 +46,12 @@ namespace NoiseDataExporter.DataModel
                 Data.fSiFlickerDivSqrI
                 )
         {
-            InitData(GmReference, TresholdVoltage);
+             Gm = 0;
+             SuIntegrated = 0;
+             SNR=0;
+             TresholdVoltage = 0;
+             OverdriveVoltage = 0;
+            //InitData(GmReference, TresholdVoltage);
         }
 
         private void InitData(double GmReference, double TresholdVoltage)

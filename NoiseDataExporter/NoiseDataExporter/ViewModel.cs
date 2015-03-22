@@ -16,6 +16,8 @@ namespace NoiseDataExporter
         public ViewModel(MainWindow wnd)
         {
             m_MainWindow = wnd;
+            m_TransconductanceReferenceFrequency = 834;
+            m_TransconductanceReferenceValue = 1;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

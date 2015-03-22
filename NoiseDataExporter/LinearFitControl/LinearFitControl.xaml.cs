@@ -59,11 +59,14 @@ namespace LinearFitControl
         
         private LinearFitViewModel m_viewModel;
         public event EventHandler<DoneLinearFittingEventArgs> FittingDone;
-
+        private bool m_IsBusy;
+        public bool IsBusy
+        { get { return m_IsBusy; } }
         public LinearFitControl()
         { 
             InitializeComponent();
             m_viewModel = new LinearFitViewModel(LinearFitPlotter);
+            m_IsBusy = false;
             //ShowZeroCrossingPoint = false;
             DataContext = m_viewModel;
         }
@@ -72,6 +75,7 @@ namespace LinearFitControl
 
         private void DoneButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            m_IsBusy = false;
             OnFittingDone(this, new DoneLinearFittingEventArgs(m_viewModel.Intercept, m_viewModel.Slope, m_viewModel.ZeroCrossingPointX));
         }
 
@@ -84,6 +88,7 @@ namespace LinearFitControl
         public void SetData(List<Point> Data)
         {
             m_viewModel.Data = Data;
+            m_IsBusy = true;
         }
 
         
@@ -92,6 +97,7 @@ namespace LinearFitControl
         {
             m_viewModel = new LinearFitViewModel(LinearFitPlotter);
             DataContext = m_viewModel;
+            m_IsBusy = false;
         }
 
         public double Intercept

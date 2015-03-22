@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,14 +30,16 @@ namespace NoiseDataExporter
         public ExportDataContainer()
             : base()
         {
-
+            m_AverageDSVoltage = 0;
+            m_DSVoltagesSum = 0;
+            m_TresholdVoltage = 0;
         }
 
-        public void Add(MeasurDataExtendedLine line)
+        public new void Add(MeasurDataExtendedLine line)
         {
             base.Add(line);
             DSVoltagesSum += line.USample;
-            AverageDSVoltage = DSVoltagesSum / base.Count;
+            AverageDSVoltage = DSVoltagesSum / Count;
         }
 
         private double m_AverageDSVoltage;
@@ -55,13 +58,20 @@ namespace NoiseDataExporter
             set { m_DSVoltagesSum = value; }
         }
 
+        private double m_TresholdVoltage;
+
+        public double TresholdVoltage
+        {
+            get { return m_TresholdVoltage; }
+            set { m_TresholdVoltage = value; }
+        }
+
         public List<Point> GetIVcurve()
         {
             var PointList = this.Select(x =>
-  {
-      return new Point(x.VoltageGate, x.Current);
-  }
-      ).ToList();
+            {
+                return new Point(x.VoltageGate, x.Current);
+            }).ToList();
             return PointList;
         }
 
@@ -86,9 +96,6 @@ namespace NoiseDataExporter
         {
             InitializeComponent();
 
-            m_AverageDSVoltage = 0;
-            m_DSVoltagesSum = 0;
-            m_CurrentDSVoltageList = new List<MeasurDataExtendedLine>();
             
             m_ViewModel = new ViewModel(this);//m_core.CoreViewModel;
             this.DataContext = m_ViewModel;
@@ -97,83 +104,77 @@ namespace NoiseDataExporter
             m_ViewModel.CurrentContent = m_logControl;
             m_fbd = new FolderBrowserDialog();
             m_ofd = new OpenFileDialog();
-            
+            m_queue = new ConcurrentQueue<ExportDataContainer>();
+            m_fitControl.FittingDone += m_fitControl_FittingDone;
+
             m_worker = new BackgroundWorker();
             m_worker.WorkerReportsProgress = true;
             m_worker.WorkerSupportsCancellation = true;
-            m_worker.DoWork += m_worker_DoWork;
-            m_worker.ProgressChanged += m_worker_ProgressChanged;
-            m_worker.RunWorkerCompleted += m_worker_RunWorkerCompleted;
-            m_worker.Disposed += m_worker_Disposed;
+            //m_worker.ProgressChanged += m_worker_ProgressChanged;
+            //m_worker.RunWorkerCompleted += m_worker_RunWorkerCompleted;
+            //m_worker.Disposed += m_worker_Disposed;
         }
 
-        void m_worker_Disposed(object sender, EventArgs e)
+        void m_fitControl_FittingDone(object sender, LinearFitControl.DoneLinearFittingEventArgs e)
         {
-            //throw new NotImplementedException();
+            ExportData(e.ZeroCrossingPointX);
+            //ProcessNextDataSet();
         }
 
-        void m_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-           // throw new NotImplementedException();
-        }
+        
 
-        void m_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-           // throw new NotImplementedException();
-        }
         
         
         private const string MeasureDataFilename = "MeasurData.dat";
         private const string MeasureDataExtendedFileName = "MeasurDataExtended.dat";
         private const double DrainSourceVoltageError = 0.005;
         private const char ValueCharSeparator = '\t';
-
-        private double m_AverageDSVoltage;
-        private double m_DSVoltagesSum;
-       
-        private List<MeasurDataExtendedLine> m_CurrentDSVoltageList;
         private string MeasurDataExtendedFN;
-        
 
-        void m_worker_DoWork(object sender, DoWorkEventArgs e)
+
+        private void WorkerReadFromFileToQueueCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-           
+            m_worker.DoWork -= WorkerReadFromFilrToQueue;
+            m_worker.RunWorkerCompleted -= WorkerReadFromFileToQueueCompleted;
+            ProcessNextDataSet();
+        }
+        void WorkerReadFromFilrToQueue(object sender, DoWorkEventArgs e)
+        {
             var worker = (BackgroundWorker)sender;
             MeasurDataExtendedFN = String.Concat(m_ViewModel.WorkingDirectory, '\\', MeasureDataExtendedFileName);
-            
+
             var HeaderStr = "";
             var UnitStr = "";
 
-            
-            if(!File.Exists(MeasurDataExtendedFN))
+            if (!File.Exists(MeasurDataExtendedFN))
                 return;
-            using(StreamReader sr = new StreamReader(MeasurDataExtendedFN))
+            using (StreamReader sr = new StreamReader(MeasurDataExtendedFN))
             {
                 HeaderStr = sr.ReadLine();
                 UnitStr = sr.ReadLine();
-                while(!sr.EndOfStream)
+                ExportDataContainer CurrentList = new ExportDataContainer();
+                while (!sr.EndOfStream)
                 {
                     var line = sr.ReadLine();
                     var strValues = line.Split(ValueCharSeparator);
                     var MeasurData = new MeasurDataExtendedLine(strValues);
-                    if(m_CurrentDSVoltageList.Count==0)
+
+                    if (CurrentList.Count == 0)//m_CurrentDSVoltageList.Count==0)
                     {
-                        m_AverageDSVoltage = m_DSVoltagesSum = MeasurData.USample;
-                        m_CurrentDSVoltageList.Add(MeasurData);
+                        CurrentList.Add(MeasurData);
                     }
                     else
                     {
-                        if (Math.Abs(MeasurData.USample - m_AverageDSVoltage) > DrainSourceVoltageError)
+                        if (Math.Abs(MeasurData.USample - CurrentList.AverageDSVoltage) > DrainSourceVoltageError)//m_AverageDSVoltage) > DrainSourceVoltageError)
                         {
-                            ProcessCurrentDataSet();
-                            m_AverageDSVoltage = m_DSVoltagesSum = MeasurData.USample;
-                            m_CurrentDSVoltageList.Add(MeasurData);
+                            m_queue.Enqueue(CurrentList);
+                            //OnDataReceived();
+                            CurrentList = new ExportDataContainer();
+                            CurrentList.Add(MeasurData);
                         }
                         else
                         {
-                            m_CurrentDSVoltageList.Add(MeasurData);
-                            m_DSVoltagesSum += MeasurData.USample;
-                            m_AverageDSVoltage = m_DSVoltagesSum / m_CurrentDSVoltageList.Count;
+                            CurrentList.Add(MeasurData);
                         }
                     }
                 }
@@ -181,30 +182,125 @@ namespace NoiseDataExporter
             }
         }
 
-        private void ProcessCurrentDataSet()
+       
+
+        private void ProcessNextDataSet()
         {
-            if (m_CurrentDSVoltageList.Count > 1)
+            if (m_fitControl.IsBusy)
+                return;
+            if (m_queue.Count == 0)
+                return;
+            var cont = new ExportDataContainer();
+            while (!m_queue.TryPeek(out cont)) ;
+            var ivCurve = cont.GetIVcurve();
+            if (ivCurve.Count < 2)
             {
-                var PointList = m_CurrentDSVoltageList.Select(x =>
-                    {
-                        return new Point(x.VoltageGate, x.Current);
-                    }
-                );
-
-                Dispatcher.Invoke(new Action<List<Point>>(x => { m_fitControl.SetData(x); }),PointList.ToList());
-                m_ViewModel.CurrentContent = m_fitControl;
-                
+                ExportData(0);
+                return;
             }
-            ExportData();
-            m_CurrentDSVoltageList.Clear();
-
+            m_fitControl.SetData(ivCurve);
+            SwitchToFitView();
         }
 
-        private void ExportData()
+
+
+        private void SwitchToFitView()
         {
-           // throw new NotImplementedException();
+            Dispatcher.Invoke(new Action(()=>{m_ViewModel.CurrentContent = m_fitControl;}));
+            
         }
+        private void SwitchToLogView()
+        {
+            m_ViewModel.CurrentContent = m_logControl;
+        }
+        private const string ExportFileName = "UltimateMeasurData.dat";
+        void WorkerExportToFile(object sender, DoWorkEventArgs e)
+        {
+            double treshold = (double)e.Argument;
+            ExportDataContainer cont;
+            while (!m_queue.TryDequeue(out cont)) ;
+            cont.TresholdVoltage = treshold;
 
+            var saveDir = m_ViewModel.SaveDirectory;
+
+            if (cont.Count > 1)
+                saveDir = String.Concat(saveDir, "Vds=", cont.AverageDSVoltage);
+            if (!Directory.Exists(saveDir))
+                Directory.CreateDirectory(saveDir);
+
+            var fn = String.Concat(saveDir, "\\", ExportFileName);
+            using (StreamWriter str = new StreamWriter(new FileStream(fn, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None)))
+            {
+                foreach (var item in cont)
+                {
+                    UltimateMeasureDataLine umdl = new UltimateMeasureDataLine(item);
+                    umdl.TresholdVoltage = cont.TresholdVoltage;
+                    umdl.OverdriveVoltage = umdl.VoltageGate - umdl.TresholdVoltage;
+                    var OldDataFile = String.Concat(m_ViewModel.WorkingDirectory, "\\", umdl.FileName);
+                    var NewDataFile = String.Concat(saveDir, "\\", "Extended", umdl.FileName);
+                    List<UltimateDataFileLine> DataList = new List<UltimateDataFileLine>();
+                    using (StreamReader rFileStr = new StreamReader(OldDataFile))
+                    {
+                        rFileStr.ReadLine();
+                        rFileStr.ReadLine();
+                        while (!rFileStr.EndOfStream)
+                        {
+                            var strValArr = rFileStr.ReadLine().Split(ValueCharSeparator);
+                            var line = new UltimateDataFileLine(new DataFileLine(strValArr));
+                            DataList.Add(line);
+                        }
+                    }
+                    var transcond = DataList.Where(x => x.Frequency == m_ViewModel.TransconductanceReferenceFrequency).Select(x => x.VoltageSpectralDensity).First() / m_ViewModel.TransconductanceReferenceValue;
+                    foreach (var line in DataList)
+                    {
+                        line.CurrentSpectralDensity = line.VoltageSpectralDensity / (umdl.ResistanceEquivalent * umdl.ResistanceEquivalent);
+                        line.CurrentSpectralDensityDivSqrI = line.CurrentSpectralDensity / (umdl.Current * umdl.Current);
+                        line.EquivalentInputNoise = line.CurrentSpectralDensity / (transcond * transcond);
+                    }
+                    double[] xFreqArr = DataList.Select(x => Convert.ToDouble(x.Frequency)).ToArray();
+                    double[] ySuArr = DataList.Select(x => x.EquivalentInputNoise).ToArray();
+                    var interpolation = MathNet.Numerics.Interpolation.CubicSpline.InterpolateAkimaSorted(xFreqArr, ySuArr);
+                    var SuIntegr = interpolation.Integrate(1, 10000);
+                    //a.Integrate()
+                    umdl.Gm = transcond;
+                    umdl.SuIntegrated = SuIntegr;
+                    umdl.SNR = 1 / Math.Sqrt(SuIntegr);
+
+
+                    //MathNet.Numerics.Integrate.OnClosedInterval(new Func<double, double>(x=>), 1, 10000);
+                    using (StreamWriter wFileStr = new StreamWriter(NewDataFile))
+                    {
+                        wFileStr.WriteLine();
+                        wFileStr.WriteLine();
+                        foreach (var line in DataList)
+                        {
+                            wFileStr.WriteLine(line.ToString());
+                        }
+                    }
+
+                    str.WriteLine(umdl.ToString());
+                    //UltimateDataFileLine uddl = new UltimateDataFileLine()
+                }
+            }
+
+            //blabla
+        }
+        void WorkerExportToFileCompleted(object sender,RunWorkerCompletedEventArgs e)
+        {
+            m_worker.DoWork -= WorkerExportToFile;
+            m_worker.RunWorkerCompleted -= WorkerExportToFileCompleted;
+            ProcessNextDataSet();
+        }
+        
+        private void ExportData(double Threshold)
+        {
+            SwitchToLogView();
+            while (m_worker.IsBusy) ;
+            m_worker.DoWork += WorkerExportToFile;
+            m_worker.RunWorkerCompleted += WorkerExportToFileCompleted;
+            m_worker.RunWorkerAsync(Threshold);
+         //   throw new NotImplementedException();
+        }
         
 
         private void MenuItem_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -225,15 +321,16 @@ namespace NoiseDataExporter
             }
         }
 
-        private void MenuItem_Click_2(object sender, System.Windows.RoutedEventArgs e)
+        private void ProcessData(object sender, System.Windows.RoutedEventArgs e)
         {
+            m_worker.DoWork += WorkerReadFromFilrToQueue;
+            m_worker.RunWorkerCompleted += WorkerReadFromFileToQueueCompleted;
             m_worker.RunWorkerAsync();
         }
 
-        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
-        {
-            m_ViewModel.CurrentContent = m_fitControl;
-                
-        }
+        
+
+        
+
     }
 }

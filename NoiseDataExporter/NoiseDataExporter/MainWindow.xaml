@@ -27,8 +27,8 @@
 
                 <MenuItem Header="{Binding TransconductanceReferenceValue}" DataContext="{Binding Mode=OneWay}"/>
             </MenuItem>
-            <MenuItem Header="Process" Click="MenuItem_Click_2"/>
-            <MenuItem Header="changeContent" Click="MenuItem_Click_3"/>
+            <MenuItem Header="Process" Click="ProcessData"/>
+            
         </Menu>
         <StatusBar Grid.Row="2">
             <StatusBarItem Content="StatusBarItem" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
