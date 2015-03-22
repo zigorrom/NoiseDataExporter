@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace NoiseDataExporter
 {
     /// <summary>
@@ -29,6 +30,8 @@ namespace NoiseDataExporter
         private ViewModel m_ViewModel;
         private FolderBrowserDialog m_fbd;
         private OpenFileDialog m_ofd;
+        private LinearFitControl.LinearFitControl m_fitControl;
+        private LogControl m_logControl;
         //private Core m_core;
         private BackgroundWorker m_worker;
 
@@ -41,19 +44,15 @@ namespace NoiseDataExporter
             m_AverageDSVoltage = 0;
             m_DSVoltagesSum = 0;
             m_CurrentDSVoltageList = new List<MeasurDataExtendedLine>();
-            var w = new Window1();
-
             
-            
-            w.ShowDialog();
-            
-            //m_core = new Core();
-            m_ViewModel = new ViewModel();//m_core.CoreViewModel;
+            m_ViewModel = new ViewModel(this);//m_core.CoreViewModel;
             this.DataContext = m_ViewModel;
-            //m_ivAnalysis = new IVAnalysis(m_ViewModel);
-            //m_ivAnalysis.DataContext = m_ViewModel;
+            m_logControl = new LogControl();
+            m_fitControl = new LinearFitControl.LinearFitControl();
+            m_ViewModel.CurrentContent = m_logControl;
             m_fbd = new FolderBrowserDialog();
             m_ofd = new OpenFileDialog();
+            
             m_worker = new BackgroundWorker();
             m_worker.WorkerReportsProgress = true;
             m_worker.WorkerSupportsCancellation = true;
@@ -147,19 +146,8 @@ namespace NoiseDataExporter
                     }
                 );
 
-                
-
-                var DataSource = new EnumerableDataSource<Point>(PointList);
-                DataSource.SetXMapping(x => x.X);
-                DataSource.SetYMapping(y => y.Y);
-                m_ViewModel.IVCurve = DataSource;
-
-                this.Dispatcher.Invoke(new Action<ViewModel>((x) =>
-                {
-                    //var ivAnalysis = new IVAnalysis(x);
-                    //ivAnalysis.WindowState = System.Windows.WindowState.Maximized;
-                    //ivAnalysis.ShowDialog();
-                }),m_ViewModel);
+                Dispatcher.Invoke(new Action<List<Point>>(x => { m_fitControl.SetData(x); }),PointList.ToList());
+                m_ViewModel.CurrentContent = m_fitControl;
                 
             }
             ExportData();
@@ -195,6 +183,12 @@ namespace NoiseDataExporter
         private void MenuItem_Click_2(object sender, System.Windows.RoutedEventArgs e)
         {
             m_worker.RunWorkerAsync();
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            m_ViewModel.CurrentContent = m_fitControl;
+                
         }
     }
 }

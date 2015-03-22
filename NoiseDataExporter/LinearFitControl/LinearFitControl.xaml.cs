@@ -86,6 +86,8 @@ namespace LinearFitControl
             m_viewModel.Data = Data;
         }
 
+        
+
         public void ClearData()
         {
             m_viewModel = new LinearFitViewModel(LinearFitPlotter);

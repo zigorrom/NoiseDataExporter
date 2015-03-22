@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
 
 namespace LinearFitControl
 {
@@ -126,26 +127,32 @@ namespace LinearFitControl
 
         private void OnRangeChanged()
         {
-            var SelectedValues = m_data.Where(x => x.X >= LeftDraggablePoint.X && x.X <= RightDraggablePoint.X);
-            double[] X = SelectedValues.Select(x => x.X).ToArray();
-            double[] Y = SelectedValues.Select(x => x.Y).ToArray();
-            if (X == null || Y == null)
-                throw new ArgumentNullException("Either X or Y array is null");
-            if (X.Length < 2 || Y.Length < 2)
+            try
             {
-                Intercept = 0;
-                Slope = 0;
-                ZeroCrossingPointX = 0;
-                return;
+                var SelectedValues = m_data.Where(x => x.X >= LeftDraggablePoint.X && x.X <= RightDraggablePoint.X);
+                double[] X = SelectedValues.Select(x => x.X).ToArray();
+                double[] Y = SelectedValues.Select(x => x.Y).ToArray();
+                if (X == null || Y == null)
+                    throw new ArgumentNullException("Either X or Y array is null");
+                if (X.Length < 2 || Y.Length < 2)
+                {
+                    Intercept = 0;
+                    Slope = 0;
+                    ZeroCrossingPointX = 0;
+                    return;
+                }
+                var res = MathNet.Numerics.Fit.Line(X, Y);
+                Intercept = res.Item1;
+                Slope = res.Item2;
+                ZeroCrossingPointX = -Intercept / Slope;
+                var fitLine = new List<Point>();
+                fitLine.Add(new Point(LeftDraggablePoint.X, LineFunc(LeftDraggablePoint.X)));
+                fitLine.Add(new Point(RightDraggablePoint.X, LineFunc(RightDraggablePoint.X)));
+                FitCurve = new EnumerableDataSource<Point>(fitLine);
+            }catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
             }
-            var res = MathNet.Numerics.Fit.Line(X, Y);
-            Intercept = res.Item1;
-            Slope = res.Item2;
-            ZeroCrossingPointX = -Intercept / Slope;
-            var fitLine = new List<Point>();
-            fitLine.Add(new Point(LeftDraggablePoint.X, LineFunc(LeftDraggablePoint.X)));
-            fitLine.Add(new Point(RightDraggablePoint.X, LineFunc(RightDraggablePoint.X)));
-            FitCurve = new EnumerableDataSource<Point>(fitLine);
         }
 
         private double LineFunc(double x)
