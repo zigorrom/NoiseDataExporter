@@ -21,7 +21,6 @@ namespace LinearFitControl
         private ChartPlotter LinearFitPlotter;
         public LinearFitViewModel(ChartPlotter LinearFitPlotter)
         {
-            // TODO: Complete member initialization
             this.LinearFitPlotter = LinearFitPlotter;
         }
 
@@ -92,6 +91,8 @@ namespace LinearFitControl
             }
         }
 
+        
+
         private List<Point> m_data;
 
         public List<Point> Data
@@ -131,7 +132,12 @@ namespace LinearFitControl
             if (X == null || Y == null)
                 throw new ArgumentNullException("Either X or Y array is null");
             if (X.Length < 2 || Y.Length < 2)
+            {
+                Intercept = 0;
+                Slope = 0;
+                ZeroCrossingPointX = 0;
                 return;
+            }
             var res = MathNet.Numerics.Fit.Line(X, Y);
             Intercept = res.Item1;
             Slope = res.Item2;

@@ -19,6 +19,38 @@ using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 namespace LinearFitControl
 {
+    public class DoneLinearFittingEventArgs:EventArgs
+    {
+        private double m_intercept;
+
+        public double Intercept
+        {
+            get { return m_intercept; }
+        }
+
+        private double m_slope;
+
+        public double Slope
+        {
+            get { return m_slope; }
+        }
+
+        private double m_zeroCrossingPointX;
+
+        public double ZeroCrossingPointX
+        {
+            get { return m_zeroCrossingPointX; }
+        }
+
+        public DoneLinearFittingEventArgs(double Intercept,double Slope, double ZeroCrossingPointX)
+        {
+            m_intercept = Intercept;
+            m_slope = Slope;
+            m_zeroCrossingPointX = ZeroCrossingPointX;
+        }
+
+    }
+
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
@@ -26,13 +58,13 @@ namespace LinearFitControl
     {
         
         private LinearFitViewModel m_viewModel;
-        private bool ShowZeroCrossingPoint;
+        public event EventHandler<DoneLinearFittingEventArgs> FittingDone;
 
         public LinearFitControl()
         { 
             InitializeComponent();
             m_viewModel = new LinearFitViewModel(LinearFitPlotter);
-            ShowZeroCrossingPoint = false;
+            //ShowZeroCrossingPoint = false;
             DataContext = m_viewModel;
         }
              
@@ -40,13 +72,42 @@ namespace LinearFitControl
 
         private void DoneButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            OnFittingDone(this, new DoneLinearFittingEventArgs(m_viewModel.Intercept, m_viewModel.Slope, m_viewModel.ZeroCrossingPointX));
         }
 
+        private void OnFittingDone(object sender, DoneLinearFittingEventArgs e)
+        {
+            if (FittingDone != null)
+                FittingDone(sender, e);
+        }
 
         public void SetData(List<Point> Data)
         {
             m_viewModel.Data = Data;
+        }
+
+        public void ClearData()
+        {
+            m_viewModel = new LinearFitViewModel(LinearFitPlotter);
+            DataContext = m_viewModel;
+        }
+
+        public double Intercept
+        {
+            get
+            {
+                return m_viewModel.Intercept;
+            }
+        }
+
+        public double Slope
+        {
+            get { return m_viewModel.Slope; }
+        }
+
+        public double ZeroCrossingPointX
+        {
+            get { return m_viewModel.ZeroCrossingPointX; }
         }
 
     }
