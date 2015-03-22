@@ -331,6 +331,18 @@ namespace NoiseDataExporter
             if(res == System.Windows.Forms.DialogResult.OK)
             {
                 m_ViewModel.TransconductanceReferenceFile = m_ofd.FileName;
+                using(StreamReader sr = new StreamReader(m_ViewModel.TransconductanceReferenceFile))
+                {
+                    while(!sr.EndOfStream)
+                    {
+                        var line = new DataFileLine(sr.ReadLine().Split('\t'));
+                        if (line.Frequency == m_ViewModel.TransconductanceReferenceFrequency)
+                        {
+                            m_ViewModel.TransconductanceReferenceValue = line.VoltageSpectralDensity;
+                            return;
+                        }
+                    }
+                }
             }
         }
 
