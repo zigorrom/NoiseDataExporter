@@ -24,7 +24,6 @@ C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDat
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.Properties.Resources.resources
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csproj.GenerateResource.Cache
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\DynamicDataDisplay.dll
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter_MarkupCompile.lref
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\NoiseDataExporter.exe.config
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.exe
@@ -46,8 +45,6 @@ C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDat
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\LinearFitControl.dll
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\LinearFitControl.pdb
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\NoiseDataExporter.csprojResolveAssemblyReference.cache
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\Window1.baml
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\Window1.g.cs
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\LinearFitControl.dll
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\LinearFitControl.pdb
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\MathNet.Numerics.dll
@@ -55,3 +52,7 @@ C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataE
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\LogControl.baml
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\LogControl.g.cs
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\MathNet.Numerics.dll
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\MathNet.Numerics.xml
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\LogControl.baml
+C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\LogControl.g.cs

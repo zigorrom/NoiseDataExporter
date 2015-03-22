@@ -178,6 +178,8 @@ namespace NoiseDataExporter
                         }
                     }
                 }
+                if (CurrentList.Count > 0)
+                    m_queue.Enqueue(CurrentList);
 
             }
         }
@@ -229,8 +231,18 @@ namespace NoiseDataExporter
                 Directory.CreateDirectory(saveDir);
 
             var fn = String.Concat(saveDir, "\\", ExportFileName);
+            bool FileExisted = false;
+            if (File.Exists(fn))
+                FileExisted = true; 
+                
             using (StreamWriter str = new StreamWriter(new FileStream(fn, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None)))
             {
+                if(!FileExisted)
+                {
+                    var a = new UltimateMeasurDataHeader();
+                    str.WriteLine(a.HeaderString());
+                    str.WriteLine(a.UnitString());
+                }
                 foreach (var item in cont)
                 {
                     UltimateMeasureDataLine umdl = new UltimateMeasureDataLine(item);
@@ -270,8 +282,9 @@ namespace NoiseDataExporter
                     //MathNet.Numerics.Integrate.OnClosedInterval(new Func<double, double>(x=>), 1, 10000);
                     using (StreamWriter wFileStr = new StreamWriter(NewDataFile))
                     {
-                        wFileStr.WriteLine();
-                        wFileStr.WriteLine();
+                        var header = new UltimateDataFileHeader();
+                        wFileStr.WriteLine(header.HeaderString());
+                        wFileStr.WriteLine(header.UnitString());
                         foreach (var line in DataList)
                         {
                             wFileStr.WriteLine(line.ToString());

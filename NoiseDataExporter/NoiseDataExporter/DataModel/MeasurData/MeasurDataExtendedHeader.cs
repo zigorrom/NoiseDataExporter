@@ -28,6 +28,51 @@ namespace NoiseDataExporter.DataModel
         public const int fSiFlicker = 27;
         public const int fSiFlickerDivSqrI = 28;
 
+        private const string StrFormat = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\t{14}";
+
+        public override string HeaderString()
+        {
+            return String.Format(
+                StrFormat,
+                base.HeaderString(),
+                "GR1 S\\-(I)(0)",
+                "GR1 f\\-(0)",
+                "GR2 S\\-(I)(0)",
+                "GR2 f\\-(0)",
+                "GR3 S\\-(I)(0)",
+                "GR3 f\\-(0)",
+                "GR4 S\\-(I)(0)",
+                "GR4 f\\-(0)",
+                "GR5 S\\-(I)(0)",
+                "GR5 f\\-(0)",
+                "A\\-(flicker)",
+                "AlphaFlicker",
+                "fS\\=(I,Flicker)",
+                "fS\\=(I,Flicker)/I\\+(2)"
+                );
+        }
+        public override string UnitString()
+        {
+
+            return String.Format(StrFormat,
+                base.UnitString(),
+                "A\\+(2)/Hz",
+                "Hz",
+                "A\\+(2)/Hz",
+                "Hz",
+                "A\\+(2)/Hz",
+                "Hz",
+                "A\\+(2)/Hz",
+                "Hz",
+                "A\\+(2)/Hz",
+                "Hz",
+                "V\\+(2)",
+                "",
+                "A\\+(2)",
+                ""
+                );
+        }
+
         public MeasurDataExtendedHeader()
         {
 

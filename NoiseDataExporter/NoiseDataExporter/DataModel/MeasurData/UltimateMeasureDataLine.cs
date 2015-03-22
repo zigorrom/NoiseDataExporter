@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -130,7 +131,8 @@ namespace NoiseDataExporter.DataModel
         public override string ToString()
         {
             const string StringFormat = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}";
-            return String.Format(StringFormat,
+            return String.Format(new NumberFormatInfo() { NumberDecimalSeparator ="." ,NumberGroupSeparator=""},
+                StringFormat,
                 base.ToString(),
                 Gm,
                 SuIntegrated,

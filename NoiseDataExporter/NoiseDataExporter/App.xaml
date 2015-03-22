@@ -9,7 +9,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				
 			</ResourceDictionary.MergedDictionaries>
-			<local:ViewModel x:Key="ViewModelDataSource" d:IsDataSource="True"/>
+			<!--<local:ViewModel x:Key="ViewModelDataSource" d:IsDataSource="True"/>-->
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>
