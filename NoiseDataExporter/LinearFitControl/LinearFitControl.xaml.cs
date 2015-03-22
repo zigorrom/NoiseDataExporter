@@ -33,38 +33,6 @@ namespace LinearFitControl
             InitializeComponent();
             m_viewModel = new LinearFitViewModel(LinearFitPlotter);
             DataContext = m_viewModel;
-
-            //var lp = new Point(0, 0);
-            //var rp = new Point(1, 0);
-            //var LeftDraggablePoint = new DraggablePoint(lp);
-            //var RightDraggablePoint = new DraggablePoint(rp);
-            //LeftDraggablePoint.PositionChanged += leftDraggablePoint_PositionChanged;
-            //RightDraggablePoint.PositionChanged += rightDraggablePoint_PositionChanged;
-
-            //m_viewModel.LeftMarkerPosition = lp.X;
-            //m_viewModel.RightMarkerPosition = rp.X;
-
-            //LinearFitPlotter.Children.Add(LeftDraggablePoint);
-            //LinearFitPlotter.Children.Add(RightDraggablePoint);
-
-            //var LeftVerticalLineBinding = new Binding("LeftMarkerPosition");
-            //LeftVerticalLineBinding.Source = m_viewModel;
-            //LeftVerticalLine.SetBinding(VerticalLine.ValueProperty, LeftVerticalLineBinding);
-            
-            //var RigthVerticalLineBinding = new Binding("RightMarkerPosition");
-            //RigthVerticalLineBinding.Source = m_viewModel;
-            //RightVerticalLine.SetBinding(VerticalLine.ValueProperty, RigthVerticalLineBinding);
-
-            //var CurveBinding = new Binding("DataSource");
-            //CurveBinding.Source = m_viewModel;
-            //Curve.SetBinding(LineGraph.DataSourceProperty, CurveBinding);
-            //var CurveBinding = new Binding("DataSource");
-            //CurveBinding.Source = m_viewModel;
-            //m_Line.SetBinding(LineGraph.DataSourceProperty, CurveBinding);
-            //m_Line = LinearFitPlotter.AddLineGraph(m_viewModel.DataSource);
-            
-
-            //LinearFitPlotter.FitToView();
         }
              
         
@@ -72,17 +40,12 @@ namespace LinearFitControl
         private void DoneButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
-           
-            // MathNet.Numerics.Fit.Line();
-            // TODO: Add event handler implementation here
         }
 
 
         public void SetData(List<Point> Data)
         {
             m_viewModel.Data = Data;
-            //LinearFitPlotter.FitToView();
-            
         }
 
     }

@@ -201,8 +201,6 @@ namespace LinearFitControl
         private double m_ZeroCrossingPointX;
        
 
-        
-
         public double ZeroCrossingPointX
         {
             get { return m_ZeroCrossingPointX; }
