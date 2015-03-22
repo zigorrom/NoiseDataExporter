@@ -29,5 +29,7 @@
             <d3:DraggablePoint x:Name="RightDraggablePoint" Position="{Binding Path=RightDraggablePoint, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </d3:ChartPlotter>
         <Button x:Name="DoneButton" Content="Done" Margin="5" Grid.Row="1" Grid.Column="1" Click="DoneButton_Click"/>
+        <Label Content="{Binding Path=ZeroCrossingPointX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="1,5,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="41" RenderTransformOrigin="0.187,1.154"/>
+        
     </Grid>
 </UserControl>
