@@ -26,12 +26,13 @@ namespace LinearFitControl
     {
         
         private LinearFitViewModel m_viewModel;
-        
+        private bool ShowZeroCrossingPoint;
 
         public LinearFitControl()
         { 
             InitializeComponent();
             m_viewModel = new LinearFitViewModel(LinearFitPlotter);
+            ShowZeroCrossingPoint = false;
             DataContext = m_viewModel;
         }
              
