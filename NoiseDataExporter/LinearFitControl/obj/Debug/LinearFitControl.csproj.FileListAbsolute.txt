@@ -11,7 +11,6 @@ C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFi
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\DynamicDataDisplay.dll
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\MathNet.Numerics.dll
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\MathNet.Numerics.xml
-C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.csprojResolveAssemblyReference.cache
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\LinearFitControl.dll
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\LinearFitControl.pdb
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\DynamicDataDisplay.dll

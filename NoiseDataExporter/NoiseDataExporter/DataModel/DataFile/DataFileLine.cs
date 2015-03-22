@@ -18,7 +18,12 @@ namespace NoiseDataExporter.DataModel
         {
             InitData(DataStrArray);
         }
-        
+
+        public override string ToString()
+        {
+            return String.Format("{0}\t{1}", Frequency, VoltageSpectralDensity);
+        }
+
         private void InitData(string[] DataStrArray)
         {
             try
