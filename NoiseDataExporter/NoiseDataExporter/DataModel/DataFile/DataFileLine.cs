@@ -8,6 +8,12 @@ namespace NoiseDataExporter.DataModel
 {
     public class DataFileLine
     {
+
+        public DataFileLine(int frequency,double sv)
+        {
+            Frequency = frequency;
+            VoltageSpectralDensity = sv;
+        }
         public DataFileLine(string[] DataStrArray)
         {
             InitData(DataStrArray);

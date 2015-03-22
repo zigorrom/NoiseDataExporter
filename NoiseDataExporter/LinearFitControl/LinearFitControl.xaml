@@ -8,6 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="120"/>
         </Grid.ColumnDefinitions>
@@ -16,17 +17,20 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <d3:ChartPlotter x:Name="LinearFitPlotter" LegendVisible="True" Grid.ColumnSpan="2">
+        <d3:ChartPlotter x:Name="LinearFitPlotter" LegendVisible="False" Grid.ColumnSpan="3">
             <d3:Header Content="IV analysis"/>
             <d3:HorizontalAxisTitle Content="Voltage, V"/>
             <d3:VerticalAxisTitle Content="Current, A"/>
-
-            <d3:LineGraph x:Name="Curve" Stroke="Black" StrokeThickness="3" DataSource="{Binding Path=DataSource,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <d3:LineGraph x:Name="FitCurve" Stroke="Red" StrokeThickness="2"/>
-            <d3:VerticalLine x:Name="LeftVerticalLine" Value="{Binding Path=LeftMarkerPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <d3:VerticalLine x:Name="RightVerticalLine" Value="{Binding Path=RightMarkerPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             
+            <d3:LineGraph x:Name="Curve"  Stroke="Black" StrokeThickness="3" DataSource="{Binding Path=Curve, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <d3:LineGraph x:Name="FitCurve" Stroke="Red" StrokeThickness="3" DataSource="{Binding Path=FitCurve,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <d3:VerticalLine x:Name="LeftVerticalLine" DataContext="{Binding Path=LeftDraggablePoint,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{Binding Path=X,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <d3:VerticalLine x:Name="RightVerticalLine" DataContext="{Binding Path=RightDraggablePoint,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{Binding Path=X,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <d3:DraggablePoint x:Name="LeftDraggablePoint" Position="{Binding Path=LeftDraggablePoint, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <d3:DraggablePoint x:Name="RightDraggablePoint" Position="{Binding Path=RightDraggablePoint, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </d3:ChartPlotter>
-        <Button x:Name="DoneButton" Content="Done" Margin="5" Grid.Row="1" Grid.Column="1" Click="DoneButton_Click"/>
+        <Button x:Name="DoneButton" Content="Done" Margin="5" Grid.Row="1" Grid.Column="2" Click="DoneButton_Click"/>
+        <Label Content="{Binding Path=ZeroCrossingPointX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" RenderTransformOrigin="0.187,1.154" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        
     </Grid>
 </UserControl>

@@ -15,9 +15,42 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 namespace LinearFitControl
 {
+    public class DoneLinearFittingEventArgs:EventArgs
+    {
+        private double m_intercept;
+
+        public double Intercept
+        {
+            get { return m_intercept; }
+        }
+
+        private double m_slope;
+
+        public double Slope
+        {
+            get { return m_slope; }
+        }
+
+        private double m_zeroCrossingPointX;
+
+        public double ZeroCrossingPointX
+        {
+            get { return m_zeroCrossingPointX; }
+        }
+
+        public DoneLinearFittingEventArgs(double Intercept,double Slope, double ZeroCrossingPointX)
+        {
+            m_intercept = Intercept;
+            m_slope = Slope;
+            m_zeroCrossingPointX = ZeroCrossingPointX;
+        }
+
+    }
+
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
@@ -25,61 +58,64 @@ namespace LinearFitControl
     {
         
         private LinearFitViewModel m_viewModel;
-        private List<Point> m_data;
-
+        public event EventHandler<DoneLinearFittingEventArgs> FittingDone;
+        private bool m_IsBusy;
+        public bool IsBusy
+        { get { return m_IsBusy; } }
         public LinearFitControl()
         { 
             InitializeComponent();
-            m_viewModel = new LinearFitViewModel();
+            m_viewModel = new LinearFitViewModel(LinearFitPlotter);
+            m_IsBusy = false;
+            //ShowZeroCrossingPoint = false;
             DataContext = m_viewModel;
-            var lp = new Point(0, 0);
-            var rp = new Point(1, 0);
-            var LeftDraggablePoint = new DraggablePoint(lp);
-            var RightDraggablePoint = new DraggablePoint(rp);
-            LeftDraggablePoint.PositionChanged += leftDraggablePoint_PositionChanged;
-            RightDraggablePoint.PositionChanged += rightDraggablePoint_PositionChanged;
-
-            m_viewModel.LeftMarkerPosition = lp.X;
-            m_viewModel.RightMarkerPosition = rp.X;
-
-            LinearFitPlotter.Children.Add(LeftDraggablePoint);
-            LinearFitPlotter.Children.Add(RightDraggablePoint);
-
-            var LeftVerticalLineBinding = new Binding("LeftMarkerPosition");
-            LeftVerticalLineBinding.Source = m_viewModel;
-            LeftVerticalLine.SetBinding(VerticalLine.ValueProperty, LeftVerticalLineBinding);
-            
-            var RigthVerticalLineBinding = new Binding("RightMarkerPosition");
-            RigthVerticalLineBinding.Source = m_viewModel;
-            RightVerticalLine.SetBinding(VerticalLine.ValueProperty, RigthVerticalLineBinding);
         }
-        void rightDraggablePoint_PositionChanged(object sender, PositionChangedEventArgs e)
-        {
-            m_viewModel.RightMarkerPosition = e.Position.X;
-            OnRangeChanged();
-        }
-
-        private void OnRangeChanged()
-        {
-            //throw new NotImplementedException();
-        }
-
-        void leftDraggablePoint_PositionChanged(object sender, PositionChangedEventArgs e)
-        {
-            m_viewModel.LeftMarkerPosition = e.Position.X;
-            OnRangeChanged();
-        }
+             
+        
 
         private void DoneButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-           // MathNet.Numerics.Fit.Line();
-            // TODO: Add event handler implementation here
+            m_IsBusy = false;
+            OnFittingDone(this, new DoneLinearFittingEventArgs(m_viewModel.Intercept, m_viewModel.Slope, m_viewModel.ZeroCrossingPointX));
+        }
+
+        private void OnFittingDone(object sender, DoneLinearFittingEventArgs e)
+        {
+            if (FittingDone != null)
+                FittingDone(sender, e);
         }
 
         public void SetData(List<Point> Data)
         {
             m_viewModel.Data = Data;
-            LinearFitPlotter.AddLineGraph(m_viewModel.DataSource);
+            m_IsBusy = true;
+        }
+
+        
+
+        public void ClearData()
+        {
+            m_viewModel = new LinearFitViewModel(LinearFitPlotter);
+            DataContext = m_viewModel;
+            m_IsBusy = false;
+        }
+
+        public double Intercept
+        {
+            get
+            {
+                return m_viewModel.Intercept;
+            }
+        }
+
+        public double Slope
+        {
+            get { return m_viewModel.Slope; }
+        }
+
+        public double ZeroCrossingPointX
+        {
+            get { return m_viewModel.ZeroCrossingPointX; }
         }
 
     }

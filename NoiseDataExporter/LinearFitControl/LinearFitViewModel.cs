@@ -1,4 +1,5 @@
 ﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using Microsoft.Research.DynamicDataDisplay;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
 
 namespace LinearFitControl
 {
@@ -17,120 +19,220 @@ namespace LinearFitControl
             if (null != PropertyChanged)
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
-
-        private double m_DSvoltage;
-
-        public double DSVoltage
+        private ChartPlotter LinearFitPlotter;
+        public LinearFitViewModel(ChartPlotter LinearFitPlotter)
         {
-            get { return m_DSvoltage; }
+            this.LinearFitPlotter = LinearFitPlotter;
+        }
+
+        private double m_MaxX;
+
+        public double MaxX
+        {
+            get { return m_MaxX; ; }
             set
             {
-                if (m_DSvoltage == value)
+                if (value == m_MaxX)
                     return;
-                m_DSvoltage = value;
-                OnPropertyChanged("DSVoltage");
+                m_MaxX = value;
+                OnPropertyChanged("MaxX");
             }
         }
 
-        private double m_TresholdVoltage;
+        private double m_MinX;
 
-        public double TresholdVoltage
+        public double MinX
         {
-            get { return m_TresholdVoltage; }
+            get { return m_MinX; }
             set
             {
-                if (m_TresholdVoltage == value)
+                if (value == m_MinX)
                     return;
-                m_TresholdVoltage = value;
-                OnPropertyChanged("TresholdVoltage");
-            }
-        }
-
-
-        private Point m_LeftDraggablePointPosition;
-
-        public Point LeftDraggablePointPosition
-        {
-            get { return m_LeftDraggablePointPosition; }
-            set
-            {
-                if (m_LeftDraggablePointPosition == value)
-                    return;
-                if (value.X > m_RightDraggablePointPosition.X)
-                    m_LeftDraggablePointPosition = new Point(m_LeftDraggablePointPosition.X, value.Y);
-                m_LeftDraggablePointPosition = value;
-                m_LeftMarkerPosition = m_LeftDraggablePointPosition.X;
-                OnPropertyChanged("LeftDraggablePointPosition");
-            }
-        }
-
-        private Point m_RightDraggablePointPosition;
-
-        public Point RightDraggablePointPosition
-        {
-            get { return m_RightDraggablePointPosition; }
-            set
-            {
-                if (m_RightDraggablePointPosition == value)
-                    return;
-                if (value.X < m_LeftDraggablePointPosition.X)
-                    m_RightDraggablePointPosition = new Point(m_RightDraggablePointPosition.X, value.Y);
-                m_RightDraggablePointPosition = value;
-                m_RightMarkerPosition = m_RightDraggablePointPosition.X;
-                OnPropertyChanged("RightDraggablePointPosition");
+                m_MinX = value;
+                OnPropertyChanged("MinX");
             }
         }
 
 
-        private double m_LeftMarkerPosition;
+        private Point m_LeftDraggablePoint;
 
-        public double LeftMarkerPosition
+        public Point LeftDraggablePoint
         {
-            get { return m_LeftMarkerPosition; }
+            get { return m_LeftDraggablePoint; }
             set
             {
-                if (m_LeftMarkerPosition == value)
+                if (value == m_LeftDraggablePoint)
                     return;
-                m_LeftMarkerPosition = value;
-                OnPropertyChanged("LeftMarkerPosition");
-
+                if (value.X < MinX)
+                    value.X = MinX;
+                if (value.X >= RightDraggablePoint.X)
+                    value.X = RightDraggablePoint.X;
+                m_LeftDraggablePoint = value;
+                OnPropertyChanged("LeftDraggablePoint");
+                OnRangeChanged();
             }
         }
 
-        private double m_RightMarkerPosition;
+        private Point m_RightDraggablePoint;
 
-        public double RightMarkerPosition
+        public Point RightDraggablePoint
         {
-            get { return m_RightMarkerPosition; }
+            get { return m_RightDraggablePoint; }
             set
             {
-                if (m_RightMarkerPosition == value)
+                if (m_RightDraggablePoint == value)
                     return;
-                m_RightMarkerPosition = value;
-                OnPropertyChanged("RightMarkerPosition");
+                if (value.X > MaxX)
+                    value.X = MaxX;
+                if (value.X <= LeftDraggablePoint.X)
+                    value.X = LeftDraggablePoint.X;
+                m_RightDraggablePoint = value;
+                OnPropertyChanged("RightDraggablePoint");
+                OnRangeChanged();
             }
         }
+
+        
 
         private List<Point> m_data;
 
         public List<Point> Data
         {
             get { return m_data; }
-            set {
+            set
+            {
+                if (value == null)
+                    return;
+                if (value.Count == 0)
+                    return;
                 m_data = value;
-                DataSource = new EnumerableDataSource<Point>(m_data);
+                m_data.Sort(new Comparison<Point>((a, b) =>
+                {
+                    if (a.X < b.X)
+                        return -1;
+                    if (a.X > b.X)
+                        return 1;
+                    return 0;
+                }));
+                Curve = new EnumerableDataSource<Point>(m_data);
+                MinX = Data[0].X;
+                MaxX = Data[Data.Count - 1].X;
+                if (MaxX < MinX)
+                    throw new ArgumentException("MaxX<MinX");
+                LeftDraggablePoint = new Point(Data[0].X, Data[0].Y);
+                RightDraggablePoint = new Point(Data[Data.Count - 1].X, Data[Data.Count - 1].Y);
                 OnPropertyChanged("Data");
             }
         }
 
-        private IPointDataSource m_dataSource;
-
-        public IPointDataSource DataSource
+        private void OnRangeChanged()
         {
-            get { return m_dataSource; }
-            set {
-                m_dataSource = value;
-                OnPropertyChanged("DataSource");
+            try
+            {
+                var SelectedValues = m_data.Where(x => x.X >= LeftDraggablePoint.X && x.X <= RightDraggablePoint.X);
+                double[] X = SelectedValues.Select(x => x.X).ToArray();
+                double[] Y = SelectedValues.Select(x => x.Y).ToArray();
+                if (X == null || Y == null)
+                    throw new ArgumentNullException("Either X or Y array is null");
+                if (X.Length < 2 || Y.Length < 2)
+                {
+                    Intercept = 0;
+                    Slope = 0;
+                    ZeroCrossingPointX = 0;
+                    return;
+                }
+                var res = MathNet.Numerics.Fit.Line(X, Y);
+                Intercept = res.Item1;
+                Slope = res.Item2;
+                ZeroCrossingPointX = -Intercept / Slope;
+                var fitLine = new List<Point>();
+                fitLine.Add(new Point(LeftDraggablePoint.X, LineFunc(LeftDraggablePoint.X)));
+                fitLine.Add(new Point(RightDraggablePoint.X, LineFunc(RightDraggablePoint.X)));
+                FitCurve = new EnumerableDataSource<Point>(fitLine);
+            }catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+        }
+
+        private double LineFunc(double x)
+        {
+            return Intercept + x * Slope;
+        }
+
+        private EnumerableDataSource<Point> m_curve;
+
+        public EnumerableDataSource<Point> Curve
+        {
+            get { return m_curve; }
+            set
+            {
+                m_curve = value;
+                m_curve.SetXYMapping(x => x);
+                m_curve.RaiseDataChanged();
+                LinearFitPlotter.FitToView();
+                OnPropertyChanged("Curve");
+            }
+        }
+
+        private EnumerableDataSource<Point> m_fitCurve;
+
+        public EnumerableDataSource<Point> FitCurve
+        {
+            get { return m_fitCurve; }
+            set
+            {
+                m_fitCurve = value;
+                m_fitCurve.SetXYMapping(x => x);
+                m_fitCurve.RaiseDataChanged();
+                LinearFitPlotter.FitToView();
+                OnPropertyChanged("FitCurve");
+            }
+        }
+
+
+        private double m_intercept;
+
+        public double Intercept
+        {
+            get { return m_intercept; }
+            set
+            {
+                if (m_intercept == value)
+                    return;
+                m_intercept = value;
+                OnPropertyChanged("Intercept");
+            }
+        }
+
+        private double m_slope;
+
+        public double Slope
+        {
+            get { return m_slope; }
+            set
+            {
+                if (m_slope == value)
+                    return;
+                m_slope = value;
+                OnPropertyChanged("Slope");
+                m_slope = value;
+            }
+        }
+
+        private double m_ZeroCrossingPointX;
+
+
+        public double ZeroCrossingPointX
+        {
+            get { return m_ZeroCrossingPointX; }
+            set
+            {
+                if (m_ZeroCrossingPointX == value)
+                    return;
+
+                m_ZeroCrossingPointX = value;
+                OnPropertyChanged("ZeroCrossingPointX");
             }
         }
 

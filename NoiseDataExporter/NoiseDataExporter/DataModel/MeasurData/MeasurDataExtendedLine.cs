@@ -14,7 +14,45 @@ namespace NoiseDataExporter.DataModel
             InitData(DataStrArray);
         }
         
-        
+        public MeasurDataExtendedLine            (            MeasurDataExtendedLine MeasurDataExtended            ):base(
+            MeasurDataExtended.USample,
+            MeasurDataExtended.Current,
+            MeasurDataExtended.ResistanceEquivalent,
+            MeasurDataExtended.FileName,
+            MeasurDataExtended.Rload,
+            MeasurDataExtended.Uwhole,
+            MeasurDataExtended.U0Sample,
+            MeasurDataExtended.U0whole,
+            MeasurDataExtended.R0sample,
+            MeasurDataExtended.Resample,
+            MeasurDataExtended.Temperature0,
+            MeasurDataExtended.TemperatureE,
+            MeasurDataExtended.AmplificationFactor,
+            MeasurDataExtended.AverageNumber,
+            MeasurDataExtended.VoltageGate)
+        {
+            InitData(MeasurDataExtended.GR1Si, MeasurDataExtended.GR1f, MeasurDataExtended.GR2Si, MeasurDataExtended.GR2f, MeasurDataExtended.GR3Si, MeasurDataExtended.GR3f, MeasurDataExtended.GR4Si, MeasurDataExtended.GR4f, MeasurDataExtended.GR5Si, MeasurDataExtended.GR5f, MeasurDataExtended.AFlicker, MeasurDataExtended.AlphaFlicker, MeasurDataExtended.fSiFlicker, MeasurDataExtended.fSiFlickerDivSqrI);
+        }
+        public MeasurDataExtendedLine(
+            MeasurDataLine MeasurData,
+            double GR1Si,
+            double GR1f,
+            double GR2Si,
+            double GR2f,
+            double GR3Si,
+            double GR3f,
+            double GR4Si,
+            double GR4f,
+            double GR5Si,
+            double GR5f,
+            double AFlicker,
+            double AlphaFlicker,
+            double fSiFlicker,
+            double fSiFlickerDivSqrI
+            ):base(MeasurData)
+        {
+            InitData(GR1Si, GR1f, GR2Si, GR2f, GR3Si, GR3f, GR4Si, GR4f, GR5Si, GR5f, AFlicker, AlphaFlicker, fSiFlicker, fSiFlickerDivSqrI);
+        }
 
         public MeasurDataExtendedLine(
             double Usample,

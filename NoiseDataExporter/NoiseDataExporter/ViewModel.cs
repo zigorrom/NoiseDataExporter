@@ -6,11 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System.Windows.Controls;
 
 namespace NoiseDataExporter
 {
     public class ViewModel:INotifyPropertyChanged
     {
+        private MainWindow m_MainWindow;
+        public ViewModel(MainWindow wnd)
+        {
+            m_MainWindow = wnd;
+            m_TransconductanceReferenceFrequency = 834;
+            m_TransconductanceReferenceValue = 1;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string PropertyName)
@@ -96,19 +105,25 @@ namespace NoiseDataExporter
             }
         }
         
-        private IPointDataSource m_IVcurve;
+       
 
-        public IPointDataSource IVCurve
+        private UserControl m_CurrentContent;
+
+        public UserControl CurrentContent
         {
-            get { return m_IVcurve; }
-            set
-            {
-                m_IVcurve = value;
-                OnPropertyChanged("IVCurve");
+            get { return m_CurrentContent; }
+            set {
+                m_MainWindow.Dispatcher.Invoke(new Action<UserControl>(x =>
+                {
+                    if (m_CurrentContent == x)
+                        return;
+                    m_CurrentContent = x;
+                    OnPropertyChanged("CurrentContent");
+                }), value);
+                
             }
         }
-        
-       
+
         
 
     }

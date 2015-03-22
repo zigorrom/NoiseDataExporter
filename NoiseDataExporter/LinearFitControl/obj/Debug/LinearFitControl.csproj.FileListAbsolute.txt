@@ -12,3 +12,17 @@ C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFi
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\MathNet.Numerics.dll
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\MathNet.Numerics.xml
 C:\Users\i.zadorozhnyi\Source\Repos\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\LinearFitControl.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\LinearFitControl.pdb
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\DynamicDataDisplay.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\MathNet.Numerics.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\bin\Debug\MathNet.Numerics.xml
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.baml
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.g.cs
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl_MarkupCompile.cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.g.resources
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.Properties.Resources.resources
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.csproj.GenerateResource.Cache
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\LinearFitControl\obj\Debug\LinearFitControl.pdb

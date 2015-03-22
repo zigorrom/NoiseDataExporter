@@ -8,11 +8,24 @@ namespace NoiseDataExporter.DataModel
 {
     public class UltimateDataFileLine:DataFileLine
     {
+        public UltimateDataFileLine(DataFileLine line ):base(line.Frequency,line.VoltageSpectralDensity)
+        {
+            CurrentSpectralDensity = 0;
+            CurrentSpectralDensityDivSqrI = 0;
+            EquivalentInputNoise = 0;
+        }
+        public UltimateDataFileLine(int Frequency,double Sv,double Si, double SiDivSqrI, double Su):base(Frequency,Sv)
+        {
+            CurrentSpectralDensity = Si;
+            CurrentSpectralDensityDivSqrI = SiDivSqrI;
+            EquivalentInputNoise = Su;
+        }
+
         public UltimateDataFileLine(string[] DataStrArray):base(DataStrArray)
         {
             InitData(DataStrArray);
         }
-
+        
         
         public override string ToString()
         {
