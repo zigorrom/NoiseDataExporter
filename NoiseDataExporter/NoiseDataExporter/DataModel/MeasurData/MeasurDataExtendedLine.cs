@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -154,7 +155,8 @@ namespace NoiseDataExporter.DataModel
         public override string ToString()
         {
             string StringFormat = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\t{14}";
-            return String.Format(StringFormat,
+            return String.Format(new NumberFormatInfo() { NumberDecimalSeparator ="." ,NumberGroupSeparator=""},
+                StringFormat,
                 base.ToString(),
                 GR1Si,
                 GR1f,

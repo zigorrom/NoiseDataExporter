@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace NoiseDataExporter.DataModel
 
         public override string ToString()
         {
-            return String.Format("{0}\t{1}", Frequency, VoltageSpectralDensity);
+            return String.Format(new NumberFormatInfo() { NumberDecimalSeparator ="." ,NumberGroupSeparator=""},"{0}\t{1}", Frequency, VoltageSpectralDensity);
         }
 
         private void InitData(string[] DataStrArray)
