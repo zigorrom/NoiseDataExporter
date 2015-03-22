@@ -17,11 +17,11 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <d3:ChartPlotter x:Name="LinearFitPlotter" LegendVisible="True" Grid.ColumnSpan="3">
+        <d3:ChartPlotter x:Name="LinearFitPlotter" LegendVisible="False" Grid.ColumnSpan="3">
             <d3:Header Content="IV analysis"/>
             <d3:HorizontalAxisTitle Content="Voltage, V"/>
             <d3:VerticalAxisTitle Content="Current, A"/>
-
+            
             <d3:LineGraph x:Name="Curve"  Stroke="Black" StrokeThickness="3" DataSource="{Binding Path=Curve, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <d3:LineGraph x:Name="FitCurve" Stroke="Red" StrokeThickness="3" DataSource="{Binding Path=FitCurve,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <d3:VerticalLine x:Name="LeftVerticalLine" DataContext="{Binding Path=LeftDraggablePoint,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{Binding Path=X,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
