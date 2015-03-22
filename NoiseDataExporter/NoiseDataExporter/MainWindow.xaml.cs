@@ -276,7 +276,7 @@ namespace NoiseDataExporter
                     //a.Integrate()
                     umdl.Gm = transcond;
                     umdl.SuIntegrated = SuIntegr;
-                    umdl.SNR = 1 / Math.Sqrt(SuIntegr);
+                    umdl.SNR = 0.001 / Math.Sqrt(SuIntegr);
 
 
                     //MathNet.Numerics.Integrate.OnClosedInterval(new Func<double, double>(x=>), 1, 10000);
