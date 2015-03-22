@@ -178,6 +178,8 @@ namespace NoiseDataExporter
                         }
                     }
                 }
+                if (CurrentList.Count > 0)
+                    m_queue.Enqueue(CurrentList);
 
             }
         }
