@@ -21,12 +21,10 @@
             <d3:HorizontalAxisTitle Content="Voltage, V"/>
             <d3:VerticalAxisTitle Content="Current, A"/>
 
-            <d3:LineGraph x:Name="Curve"  Stroke="Black" StrokeThickness="3" DataSource="{Binding Path=DataSource, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <!--<d3:LineGraph x:Name="FitCurve" Stroke="Red" StrokeThickness="3" />-->
+            <d3:LineGraph x:Name="Curve"  Stroke="Black" StrokeThickness="3" DataSource="{Binding Path=Curve, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <d3:LineGraph x:Name="FitCurve" Stroke="Red" StrokeThickness="3" DataSource="{Binding Path=FitCurve,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <d3:VerticalLine x:Name="LeftVerticalLine" DataContext="{Binding Path=LeftDraggablePoint,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{Binding Path=X,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <d3:VerticalLine x:Name="RightVerticalLine" DataContext="{Binding Path=RightDraggablePoint,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{Binding Path=X,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <!--<d3:VerticalLine x:Name="LeftVerticalLine" Value="{Binding Path=LeftMarkerPosition,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
-            <!--<d3:VerticalLine x:Name="RightVerticalLine" Value="{Binding Path=RightMarkerPosition,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
             <d3:DraggablePoint x:Name="LeftDraggablePoint" Position="{Binding Path=LeftDraggablePoint, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <d3:DraggablePoint x:Name="RightDraggablePoint" Position="{Binding Path=RightDraggablePoint, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </d3:ChartPlotter>

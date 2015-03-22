@@ -31,7 +31,7 @@ namespace LinearFitControl
         public LinearFitControl()
         { 
             InitializeComponent();
-            m_viewModel = new LinearFitViewModel();
+            m_viewModel = new LinearFitViewModel(LinearFitPlotter);
             DataContext = m_viewModel;
 
             //var lp = new Point(0, 0);
@@ -81,7 +81,7 @@ namespace LinearFitControl
         public void SetData(List<Point> Data)
         {
             m_viewModel.Data = Data;
-            LinearFitPlotter.FitToView();
+            //LinearFitPlotter.FitToView();
             
         }
 

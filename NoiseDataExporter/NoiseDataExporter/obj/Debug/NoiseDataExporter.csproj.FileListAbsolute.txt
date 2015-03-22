@@ -53,3 +53,5 @@ C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataE
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\LinearFitControl.pdb
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\Window1.baml
 C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\obj\Debug\Window1.g.cs
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\MathNet.Numerics.dll
+C:\Users\Dell\Documents\Visual Studio 2013\Projects\NoiseDataExporter\NoiseDataExporter\NoiseDataExporter\bin\Debug\MathNet.Numerics.xml
