@@ -29,8 +29,9 @@ namespace LinearFitControl
 
         public double MaxX
         {
-            get { return m_MaxX;; }
-            set {
+            get { return m_MaxX; ; }
+            set
+            {
                 if (value == m_MaxX)
                     return;
                 m_MaxX = value;
@@ -43,7 +44,8 @@ namespace LinearFitControl
         public double MinX
         {
             get { return m_MinX; }
-            set {
+            set
+            {
                 if (value == m_MinX)
                     return;
                 m_MinX = value;
@@ -57,8 +59,9 @@ namespace LinearFitControl
         public Point LeftDraggablePoint
         {
             get { return m_LeftDraggablePoint; }
-            set {
-                if (value==m_LeftDraggablePoint)
+            set
+            {
+                if (value == m_LeftDraggablePoint)
                     return;
                 if (value.X < MinX)
                     value.X = MinX;
@@ -75,7 +78,8 @@ namespace LinearFitControl
         public Point RightDraggablePoint
         {
             get { return m_RightDraggablePoint; }
-            set {
+            set
+            {
                 if (m_RightDraggablePoint == value)
                     return;
                 if (value.X > MaxX)
@@ -128,12 +132,13 @@ namespace LinearFitControl
                 throw new ArgumentNullException("Either X or Y array is null");
             if (X.Length < 2 || Y.Length < 2)
                 return;
-            var res= MathNet.Numerics.Fit.Line(X, Y);
+            var res = MathNet.Numerics.Fit.Line(X, Y);
             Intercept = res.Item1;
             Slope = res.Item2;
+            ZeroCrossingPointX = -Intercept / Slope;
             var fitLine = new List<Point>();
             fitLine.Add(new Point(LeftDraggablePoint.X, LineFunc(LeftDraggablePoint.X)));
-            fitLine.Add(new Point(RightDraggablePoint.X,LineFunc(RightDraggablePoint.X)));
+            fitLine.Add(new Point(RightDraggablePoint.X, LineFunc(RightDraggablePoint.X)));
             FitCurve = new EnumerableDataSource<Point>(fitLine);
         }
 
@@ -162,7 +167,8 @@ namespace LinearFitControl
         public EnumerableDataSource<Point> FitCurve
         {
             get { return m_fitCurve; }
-            set {
+            set
+            {
                 m_fitCurve = value;
                 m_fitCurve.SetXYMapping(x => x);
                 m_fitCurve.RaiseDataChanged();
@@ -177,7 +183,8 @@ namespace LinearFitControl
         public double Intercept
         {
             get { return m_intercept; }
-            set {
+            set
+            {
                 if (m_intercept == value)
                     return;
                 m_intercept = value;
@@ -190,21 +197,30 @@ namespace LinearFitControl
         public double Slope
         {
             get { return m_slope; }
-            set {
+            set
+            {
                 if (m_slope == value)
                     return;
                 m_slope = value;
                 OnPropertyChanged("Slope");
-                m_slope = value; }
+                m_slope = value;
+            }
         }
 
         private double m_ZeroCrossingPointX;
-       
+
 
         public double ZeroCrossingPointX
         {
             get { return m_ZeroCrossingPointX; }
-            set { m_ZeroCrossingPointX = value; }
+            set
+            {
+                if (m_ZeroCrossingPointX == value)
+                    return;
+
+                m_ZeroCrossingPointX = value;
+                OnPropertyChanged("ZeroCrossingPointX");
+            }
         }
 
 
