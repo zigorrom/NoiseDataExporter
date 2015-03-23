@@ -25,12 +25,22 @@ namespace NoiseDataExporter.DataModel
             return String.Format(new NumberFormatInfo() { NumberDecimalSeparator ="." ,NumberGroupSeparator=""},"{0}\t{1}", Frequency, VoltageSpectralDensity);
         }
 
+        public double DoubleFromString(string str)
+        {
+            return double.Parse(str, NumberStyles.Float, new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" });
+        }
+
+        public int IntFromString(string str)
+        {
+            return int.Parse(str, NumberStyles.Float, new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" });
+        }
+
         private void InitData(string[] DataStrArray)
         {
             try
             {
-                Frequency = int.Parse(DataStrArray[DataFileHeader.FrequencyIndex]);
-                VoltageSpectralDensity = double.Parse(DataStrArray[DataFileHeader.VoltageSpectralDensityIndex]);
+                Frequency = IntFromString(DataStrArray[DataFileHeader.FrequencyIndex]);
+                VoltageSpectralDensity = DoubleFromString(DataStrArray[DataFileHeader.VoltageSpectralDensityIndex]);
             }
             catch (Exception e)
             {

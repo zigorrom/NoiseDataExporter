@@ -43,9 +43,9 @@ namespace NoiseDataExporter.DataModel
         {
             try
             {
-                CurrentSpectralDensity = double.Parse(DataStrArray[UltimateDataFileHeader.SiIndex]);
-                CurrentSpectralDensityDivSqrI = double.Parse(DataStrArray[UltimateDataFileHeader.SiDivSqrI]);
-                EquivalentInputNoise = double.Parse(DataStrArray[UltimateDataFileHeader.SuIndex]);
+                CurrentSpectralDensity = DoubleFromString(DataStrArray[UltimateDataFileHeader.SiIndex]);
+                CurrentSpectralDensityDivSqrI = DoubleFromString(DataStrArray[UltimateDataFileHeader.SiDivSqrI]);
+                EquivalentInputNoise = DoubleFromString(DataStrArray[UltimateDataFileHeader.SuIndex]);
             }
             catch (Exception e)
             {
