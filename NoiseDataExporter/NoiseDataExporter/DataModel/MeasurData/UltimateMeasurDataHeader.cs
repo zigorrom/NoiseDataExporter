@@ -23,7 +23,7 @@ namespace NoiseDataExporter.DataModel
                 base.HeaderString(),
                 "gm",
                 "Su",
-                "SNR",
+                "SNR_1mV",
                 "Treshold Voltage",
                 "OverdriveVoltage"
                 );

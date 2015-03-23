@@ -23,8 +23,6 @@
                 <MenuItem Header="ReferenceFile" Click="MenuItem_Click_1"/>
                 <Separator/>
                 <MenuItem Header="{Binding TransconductanceReferenceFrequency, TargetNullValue=None}" DataContext="{Binding Mode=OneWay}" />
-
-
                 <MenuItem Header="{Binding TransconductanceReferenceValue}" DataContext="{Binding Mode=OneWay}"/>
             </MenuItem>
             <MenuItem Header="Process" Click="ProcessData"/>

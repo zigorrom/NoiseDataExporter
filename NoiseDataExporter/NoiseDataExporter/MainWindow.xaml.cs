@@ -276,7 +276,7 @@ namespace NoiseDataExporter
                     //a.Integrate()
                     umdl.Gm = transcond;
                     umdl.SuIntegrated = SuIntegr;
-                    umdl.SNR = 1 / Math.Sqrt(SuIntegr);
+                    umdl.SNR = 0.001 / Math.Sqrt(SuIntegr);
 
 
                     //MathNet.Numerics.Integrate.OnClosedInterval(new Func<double, double>(x=>), 1, 10000);
@@ -331,6 +331,18 @@ namespace NoiseDataExporter
             if(res == System.Windows.Forms.DialogResult.OK)
             {
                 m_ViewModel.TransconductanceReferenceFile = m_ofd.FileName;
+                using(StreamReader sr = new StreamReader(m_ViewModel.TransconductanceReferenceFile))
+                {
+                    while(!sr.EndOfStream)
+                    {
+                        var line = new DataFileLine(sr.ReadLine().Split('\t'));
+                        if (line.Frequency == m_ViewModel.TransconductanceReferenceFrequency)
+                        {
+                            m_ViewModel.TransconductanceReferenceValue = line.VoltageSpectralDensity;
+                            return;
+                        }
+                    }
+                }
             }
         }
 
