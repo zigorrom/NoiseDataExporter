@@ -199,5 +199,6 @@ namespace NoiseDataExporter.DataModel
             set { m_OverdriveVoltage = value; }
         }
 
+        
     }
 }
