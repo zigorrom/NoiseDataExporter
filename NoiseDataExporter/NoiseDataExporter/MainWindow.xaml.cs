@@ -235,7 +235,7 @@ namespace NoiseDataExporter
             if (File.Exists(fn))
                 FileExisted = true; 
                 
-            using (StreamWriter str = new StreamWriter(new FileStream(fn, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None)))
+            using (StreamWriter str = new StreamWriter(new FileStream(fn, FileMode.Append, FileAccess.Write, FileShare.None)))
             {
                 if(!FileExisted)
                 {
@@ -253,8 +253,8 @@ namespace NoiseDataExporter
                     List<UltimateDataFileLine> DataList = new List<UltimateDataFileLine>();
                     using (StreamReader rFileStr = new StreamReader(OldDataFile))
                     {
-                        rFileStr.ReadLine();
-                        rFileStr.ReadLine();
+                        //rFileStr.ReadLine();
+                        //rFileStr.ReadLine();
                         while (!rFileStr.EndOfStream)
                         {
                             var strValArr = rFileStr.ReadLine().Split(ValueCharSeparator);
