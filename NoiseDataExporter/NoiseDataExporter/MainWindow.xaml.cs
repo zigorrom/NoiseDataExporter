@@ -262,7 +262,8 @@ namespace NoiseDataExporter
                             DataList.Add(line);
                         }
                     }
-                    var transcond = Math.Sqrt(DataList.Where(x => x.Frequency == m_ViewModel.TransconductanceReferenceFrequency).Select(x => x.VoltageSpectralDensity).First() / m_ViewModel.TransconductanceReferenceValue);
+                    //Si/Sv
+                    var transcond = Math.Sqrt(DataList.Where(x => x.Frequency == m_ViewModel.TransconductanceReferenceFrequency).Select(x => x.VoltageSpectralDensity).First() / (umdl.ResistanceEquivalent * umdl.ResistanceEquivalent) / m_ViewModel.TransconductanceReferenceValue);
                     foreach (var line in DataList)
                     {
                         line.CurrentSpectralDensity = line.VoltageSpectralDensity / (umdl.ResistanceEquivalent * umdl.ResistanceEquivalent);
