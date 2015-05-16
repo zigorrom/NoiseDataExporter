@@ -127,7 +127,7 @@ namespace NoiseDataExporter
         
         private const string MeasureDataFilename = "MeasurData.dat";
         private const string MeasureDataExtendedFileName = "MeasurDataExtended.dat";
-        private const double DrainSourceVoltageError = 0.005;
+        private const double DrainSourceVoltageError = 0.015;
         private const char ValueCharSeparator = '\t';
         private string MeasurDataExtendedFN;
 
